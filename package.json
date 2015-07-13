@@ -1,0 +1,12 @@
+{
+  "name": "react-native-updater",
+  "version": "0.0.1",
+  "description": "Update and manage your React Native application versions",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf ./lib && babel src/ -d lib/",
+    "pre-publish": "npm run build"
+  },
+  "author": "Johannes Lumpe",
+  "nativePackage": true
+}

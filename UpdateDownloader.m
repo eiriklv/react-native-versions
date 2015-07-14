@@ -2,8 +2,8 @@
 
 @implementation UpdateDownloader
 
-static NSString *VERSION_LIST = @"https://api.staging.rnplay.org/bundled_apps/%@/versions";
-static NSString *SINGLE_VERSION_PATH = @"https://api.staging.rnplay.org/bundled_apps/%@/versions/%@";
+static NSString *VERSION_LIST = @"http://www.reactnative.sh/apps/%@/1.0/js_versions";
+static NSString *SINGLE_VERSION_PATH = @"http://www.reactnative.sh/apps/%@/1.0/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (id) sharedInstance {

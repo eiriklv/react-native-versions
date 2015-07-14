@@ -16,10 +16,10 @@ var {
 } = React;
 
 UpdateManager.configureUpdater({
-  appId: '1',
+  appId: 'a3325f20-b08c-4d8a-b313-d964c5d23bdc',
 });
 
-UpdateManager.downloadVersionAsync('1')
+UpdateManager.downloadVersionAsync('1f3b5bb596cdd49345812b113809b2cf')
   .then((path) => {
     console.log('DONE', path);
   })

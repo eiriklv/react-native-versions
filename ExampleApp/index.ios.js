@@ -10,7 +10,22 @@ var {
   StyleSheet,
   Text,
   View,
+  NativeModules: {
+    UpdateDownloader
+  }
 } = React;
+
+UpdateDownloader.configure({
+  appId: '1',
+});
+
+UpdateDownloader.downloadVersionAsync('1')
+  .then((path) => {
+    console.log('DONE', path);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 var ExampleApp = React.createClass({
   render: function() {

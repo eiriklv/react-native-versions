@@ -16,6 +16,14 @@ static NSString *LOCAL_DIR = @"versions";
   return sharedDownloader;
 }
 
+- (id) init {
+  if (self = [super init]) {
+    self.bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+  }
+
+  return self;
+}
+
 - (void) configure:(NSDictionary*)config {
   self.token = [config objectForKey:@"token"];
   self.appId = [config objectForKey:@"appId"];

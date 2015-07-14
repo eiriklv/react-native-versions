@@ -4,6 +4,7 @@
 
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSString *appId;
+@property (strong, nonatomic) NSString *bundleVersion;
 
 + (id) sharedInstance;
 - (void) configure:(NSDictionary*)config;

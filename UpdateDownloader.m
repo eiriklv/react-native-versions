@@ -6,23 +6,24 @@ static NSString *VERSION_LIST = @"https://api.staging.rnplay.org/bundled_apps/%@
 static NSString *SINGLE_VERSION_PATH = @"https://api.staging.rnplay.org/bundled_apps/%@/versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
-static NSString *token;
-static NSString *appId;
-
-@synthesize bridge = _bridge;
-RCT_EXPORT_MODULE();
-
-RCT_EXPORT_METHOD(configure:(NSDictionary*)config) {
-  token = [config objectForKey:@"token"];
-  appId = [config objectForKey:@"appId"];
++ (id) sharedInstance {
+  static UpdateDownloader *sharedDownloader = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedDownloader = [[self alloc] init];
+  });
+  
+  return sharedDownloader;
 }
 
-RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
-                             resolver:(RCTPromiseResolveBlock)resolve
-                             rejecter:(RCTPromiseRejectBlock)reject) {
+- (void) configure:(NSDictionary*)config {
+  self.token = [config objectForKey:@"token"];
+  self.appId = [config objectForKey:@"appId"];
+}
 
+- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *, NSString *))completion {
   NSString *versionFile = [version stringByAppendingPathExtension:@"js"];
-  NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, appId, version];
+  NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, self.appId, version];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsPath = [paths objectAtIndex:0];
@@ -30,11 +31,7 @@ RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
                                         stringByAppendingPathComponent:versionFile];
 
   [self downloadFileAtURL:remotePath ToPath:localPath Completion:^(NSError *err) {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(localPath);
-    }
+    completion(err, localPath);
   }];
 }
 

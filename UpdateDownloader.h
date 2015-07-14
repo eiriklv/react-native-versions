@@ -1,8 +1,13 @@
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
 
-@interface UpdateDownloader : NSObject <RCTBridgeModule, NSURLSessionDelegate>
+@interface UpdateDownloader : NSObject <NSURLSessionDelegate>
 
+@property (strong, nonatomic) NSString *token;
+@property (strong, nonatomic) NSString *appId;
+
++ (id) sharedInstance;
+- (void) configure:(NSDictionary*)config;
+- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *, NSString *))completion;
 - (void) downloadFileAtURL:(NSString*)urlPath ToPath:(NSString*)path Completion:(void(^)(NSError* err))completion;
 
 @end

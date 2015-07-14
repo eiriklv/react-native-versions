@@ -2,7 +2,8 @@
 
 @implementation UpdateDownloader
 
-static NSString *API_PATH = @"http://rnplay.org/apps/";
+static NSString *VERSION_LIST = @"https://api.staging.rnplay.org/bundled_apps/%@/versions";
+static NSString *SINGLE_VERSION_PATH = @"https://api.staging.rnplay.org/bundled_apps/%@/versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
 static NSString *token;
@@ -21,7 +22,7 @@ RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
                              rejecter:(RCTPromiseRejectBlock)reject) {
 
   NSString *versionFile = [version stringByAppendingPathExtension:@"js"];
-  NSString *remotePath = [API_PATH stringByAppendingPathComponent:versionFile];
+  NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, appId, version];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsPath = [paths objectAtIndex:0];

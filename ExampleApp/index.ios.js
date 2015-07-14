@@ -11,15 +11,15 @@ var {
   Text,
   View,
   NativeModules: {
-    UpdateDownloader
+    UpdateManager
   }
 } = React;
 
-UpdateDownloader.configure({
+UpdateManager.configureUpdater({
   appId: '1',
 });
 
-UpdateDownloader.downloadVersionAsync('1')
+UpdateManager.downloadVersionAsync('1')
   .then((path) => {
     console.log('DONE', path);
   })

@@ -5,8 +5,16 @@
 static NSString *API_PATH = @"http://rnplay.org/apps/";
 static NSString *LOCAL_DIR = @"versions";
 
+static NSString *token;
+static NSString *appId;
+
 @synthesize bridge = _bridge;
 RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(configure:(NSDictionary*)config) {
+  token = [config objectForKey:@"token"];
+  appId = [config objectForKey:@"appId"];
+}
 
 RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
                              resolver:(RCTPromiseResolveBlock)resolve

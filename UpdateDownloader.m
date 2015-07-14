@@ -29,7 +29,7 @@ RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
   NSString *localPath = [[documentsPath stringByAppendingPathComponent:LOCAL_DIR]
                                         stringByAppendingPathComponent:versionFile];
 
-  [UpdateDownloader downloadFileAtURL:remotePath ToPath:localPath Completion:^(NSError *err) {
+  [self downloadFileAtURL:remotePath ToPath:localPath Completion:^(NSError *err) {
     if (err) {
       reject(err);
     } else {
@@ -38,9 +38,12 @@ RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
   }];
 }
 
-+ (void) downloadFileAtURL:(NSString *)urlPath ToPath:(NSString *)path Completion:(void (^)(NSError *))completion {
+- (void) downloadFileAtURL:(NSString *)urlPath ToPath:(NSString *)path Completion:(void (^)(NSError *))completion {
   NSURL *url = [NSURL URLWithString:urlPath];
-  NSURLSessionDataTask *updateDownload = [[NSURLSession sharedSession]
+  NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+  NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
+  
+  NSURLSessionDataTask *updateDownload = [session
     dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     if (error != nil) {
       return completion(error);
@@ -59,6 +62,19 @@ RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
   }];
   
   [updateDownload resume];
+}
+
+#pragma mark - NSURLSessionDelegate
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler{
+  if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
+    if([challenge.protectionSpace.host isEqualToString:@"api.staging.rnplay.org"]){
+      NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+      completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
+    } else {
+      completionHandler(NSURLSessionAuthChallengeRejectProtectionSpace, nil);
+    }
+  }
 }
 
 @end

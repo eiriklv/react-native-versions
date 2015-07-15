@@ -25,6 +25,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F102DFF71B542CB60077B86E /* UpdateDownloader.m */; };
 		F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1EE1B552F5800678A5B /* UpdateManager.m */; };
+		F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1FB1B553F0D00678A5B /* BundleManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		F102DFF71B542CB60077B86E /* UpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateDownloader.m; path = ../UpdateDownloader.m; sourceTree = "<group>"; };
 		F112B1ED1B552F5800678A5B /* UpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateManager.h; path = ../UpdateManager.h; sourceTree = "<group>"; };
 		F112B1EE1B552F5800678A5B /* UpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateManager.m; path = ../UpdateManager.m; sourceTree = "<group>"; };
+		F112B1FA1B553F0D00678A5B /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundleManager.h; path = ../BundleManager.h; sourceTree = "<group>"; };
+		F112B1FB1B553F0D00678A5B /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundleManager.m; path = ../BundleManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				F112B1FA1B553F0D00678A5B /* BundleManager.h */,
+				F112B1FB1B553F0D00678A5B /* BundleManager.m */,
 				F112B1ED1B552F5800678A5B /* UpdateManager.h */,
 				F112B1EE1B552F5800678A5B /* UpdateManager.m */,
 				F102DFF61B542CB60077B86E /* UpdateDownloader.h */,
@@ -536,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */,
 				F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,

@@ -26,6 +26,8 @@
 		F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F102DFF71B542CB60077B86E /* UpdateDownloader.m */; };
 		F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1EE1B552F5800678A5B /* UpdateManager.m */; };
 		F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1FB1B553F0D00678A5B /* BundleManager.m */; };
+		F1F26D2E1B567EFF00C850A3 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */; };
+		F1F26D311B567F7C00C850A3 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F26D301B567F7C00C850A3 /* NSData+MD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,10 @@
 		F112B1EE1B552F5800678A5B /* UpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateManager.m; path = ../UpdateManager.m; sourceTree = "<group>"; };
 		F112B1FA1B553F0D00678A5B /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundleManager.h; path = ../BundleManager.h; sourceTree = "<group>"; };
 		F112B1FB1B553F0D00678A5B /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundleManager.m; path = ../BundleManager.m; sourceTree = "<group>"; };
+		F1F26D2C1B567EFF00C850A3 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "../NSString+MD5.h"; sourceTree = "<group>"; };
+		F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "../NSString+MD5.m"; sourceTree = "<group>"; };
+		F1F26D2F1B567F7C00C850A3 /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MD5.h"; path = "../NSData+MD5.h"; sourceTree = "<group>"; };
+		F1F26D301B567F7C00C850A3 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MD5.m"; path = "../NSData+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +257,10 @@
 				F112B1EE1B552F5800678A5B /* UpdateManager.m */,
 				F102DFF61B542CB60077B86E /* UpdateDownloader.h */,
 				F102DFF71B542CB60077B86E /* UpdateDownloader.m */,
+				F1F26D2C1B567EFF00C850A3 /* NSString+MD5.h */,
+				F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */,
+				F1F26D2F1B567F7C00C850A3 /* NSData+MD5.h */,
+				F1F26D301B567F7C00C850A3 /* NSData+MD5.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -541,6 +551,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F26D2E1B567EFF00C850A3 /* NSString+MD5.m in Sources */,
+				F1F26D311B567F7C00C850A3 /* NSData+MD5.m in Sources */,
 				F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */,
 				F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,

@@ -5,6 +5,7 @@
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSString *appId;
 @property (strong, nonatomic) NSString *bundleVersion;
+@property (strong, nonatomic) NSString *currentJSVersion;
 
 + (id) sharedInstance;
 - (void) configure:(NSDictionary*)config;

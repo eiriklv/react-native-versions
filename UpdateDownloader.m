@@ -2,6 +2,9 @@
 
 @implementation UpdateDownloader
 
+static NSString *kUpdaterData = @"RNShellUpdaterData";
+static NSString *kCurrentJSVersion = @"currentJsVersion";
+
 static NSString *VERSION_LIST = @"http://www.reactnative.sh/apps/%@/%@/js_versions";
 static NSString *SINGLE_VERSION_PATH = @"http://www.reactnative.sh/apps/%@/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
@@ -19,7 +22,20 @@ static NSString *LOCAL_DIR = @"versions";
 - (id) init {
   if (self = [super init]) {
     self.bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self.currentJSVersion = [self getValueFromUserDefaultsForKey:kCurrentJSVersion];
   }
+  
+//  [self downloadVersionList:^(NSError *err, NSArray *versionList) {
+//    NSLog(@"DOWNLOAD COMPLETE");
+//    NSArray *newVersions = Underscore.array(versionList)
+//      .filter(Underscore.isDictionary)
+//      .reject(^BOOL (NSDictionary *version) {
+//        return [[version objectForKey:@"bundle_hash"] isEqualToString:self.currentJSVersion];
+//      })
+//      .unwrap;
+//    
+//    NSLog(@"%@", newVersions);
+//  }];
 
   return self;
 }
@@ -96,4 +112,10 @@ static NSString *LOCAL_DIR = @"versions";
   }
 }
 
+#pragma mark - Helper methods
+
+- (id) getValueFromUserDefaultsForKey:(NSString*)key {
+  NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
+  return [defaults objectForKey:key];
+}
 @end

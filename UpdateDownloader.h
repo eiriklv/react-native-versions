@@ -8,7 +8,7 @@
 
 + (id) sharedInstance;
 - (void) configure:(NSDictionary*)config;
-- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *, NSString *))completion;
+- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion;
 - (void) downloadFileAtURL:(NSString*)urlPath ToPath:(NSString*)path Completion:(void(^)(NSError* err))completion;
 
 @end

@@ -2,8 +2,8 @@
 
 @implementation UpdateDownloader
 
-static NSString *VERSION_LIST = @"http://www.reactnative.sh/apps/%@/1.0/js_versions";
-static NSString *SINGLE_VERSION_PATH = @"http://www.reactnative.sh/apps/%@/1.0/js_versions/%@";
+static NSString *VERSION_LIST = @"http://www.reactnative.sh/apps/%@/%@/js_versions";
+static NSString *SINGLE_VERSION_PATH = @"http://www.reactnative.sh/apps/%@/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (id) sharedInstance {
@@ -12,7 +12,7 @@ static NSString *LOCAL_DIR = @"versions";
   dispatch_once(&onceToken, ^{
     sharedDownloader = [[self alloc] init];
   });
-  
+
   return sharedDownloader;
 }
 
@@ -29,7 +29,16 @@ static NSString *LOCAL_DIR = @"versions";
   self.appId = [config objectForKey:@"appId"];
 }
 
-- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *, NSString *))completion {
+- (void) downloadVersionList:(void (^)(NSError *err, NSArray *versionList))completion {
+  NSString *versionsPath = [NSString stringWithFormat:VERSION_LIST, self.appId, self.bundleVersion];
+  [self downloadURLContents:versionsPath Completion:^(NSError *err, NSData *data) {
+    NSError *error;
+    NSArray *versionList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    completion(error, versionList);
+  }];
+}
+
+- (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion {
   NSString *versionFile = [version stringByAppendingPathExtension:@"js"];
   NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, self.appId, version];
 
@@ -43,30 +52,35 @@ static NSString *LOCAL_DIR = @"versions";
   }];
 }
 
-- (void) downloadFileAtURL:(NSString *)urlPath ToPath:(NSString *)path Completion:(void (^)(NSError *))completion {
-  NSURL *url = [NSURL URLWithString:urlPath];
-  NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
-  
-  NSURLSessionDataTask *updateDownload = [session
-    dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    if (error != nil) {
-      return completion(error);
+- (void) downloadFileAtURL:(NSString *)urlPath ToPath:(NSString *)path Completion:(void (^)(NSError *err))completion {
+  [self downloadURLContents:urlPath Completion:^(NSError *err, NSData *data) {
+    if (err != nil) {
+      return completion(err);
     }
-    
+
     NSString *localPath = [path stringByDeletingLastPathComponent];
     NSFileManager *manager = [NSFileManager defaultManager];
     [manager createDirectoryAtPath:localPath withIntermediateDirectories:YES attributes:nil error:nil];
     BOOL success = [manager createFileAtPath:path contents:data attributes:nil];
-    
+
     if (!success) {
       return completion([NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil]);
     }
-    
+
     completion(nil);
   }];
-  
-  [updateDownload resume];
+}
+
+- (void) downloadURLContents:(NSString*)urlPath Completion:(void (^)(NSError *err, NSData *data))completion {
+  NSURL *url = [NSURL URLWithString:urlPath];
+  NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+  NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
+
+  NSURLSessionDataTask *download = [session
+    dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+      completion(error, data);
+    }];
+  [download resume];
 }
 
 #pragma mark - NSURLSessionDelegate

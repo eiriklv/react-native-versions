@@ -1,27 +1,15 @@
-#import "UpdateManager.h"
-#import "UpdateDownloader.h"
+#import "BundleManager.h"
 
-@implementation UpdateManager
+@implementation BundleManager
 
-@synthesize bridge = _bridge;
-RCT_EXPORT_MODULE();
-
-RCT_EXPORT_METHOD(configureUpdater:(NSDictionary*)config) {
-  UpdateDownloader *downloader = [UpdateDownloader sharedInstance];
-  [downloader configure:config];
-}
-
-RCT_EXPORT_METHOD(downloadVersionAsync:(NSString *)version
-                              resolver:(RCTPromiseResolveBlock)resolve
-                              rejecter:(RCTPromiseRejectBlock)reject) {
+- (NSString *)latestJSBundlePath {
+  // 1. check documents/version/ for files and return the newest one
+  // how would we sort the files? we cannot rely on the creation date, because
+  // we could jump back to an older version, which we hadn't loaded before. The file
+  // creation date would be never and it would be seen as latest version
   
-  [[UpdateDownloader sharedInstance] downloadVersion:version Completion:^(NSError *err, NSString* localPath) {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(localPath);
-    }
-  }];
+  // 2. if no files are present, return the path for the main js file from the bundle
+  return @"";
 }
 
 @end

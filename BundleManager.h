@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
 
-@interface UpdateManager : NSObject <RCTBridgeModule>
+@interface BundleManager : NSObject
+
+- (NSString*) latestJSBundlePath;
 
 @end
-- (NSString *) latestJSBundlePath;

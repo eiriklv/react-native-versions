@@ -53,12 +53,16 @@ var ExampleApp = React.createClass({
   },
 
   componentDidMount() {
-    UpdateManager.discoverLatestVersionAsync()
-      .then((latestVersionData) => {
-        var latestVersion = latestVersionData.version_number
-        UpdateManager.getCurrentJsVersion()
-        .then((currentVersion) => {
-          this.renderCurrentJsVersion();
+    UpdateManager.getCurrentJsVersion()
+    .then((currentVersion) => {
+      this.renderCurrentJsVersion()
+      UpdateManager.discoverLatestVersionAsync()
+        .catch((err) => {
+          // error fetching the latest version
+          console.log(err);
+        })
+        .then((latestVersionData) => {
+          var latestVersion = latestVersionData.version_number;
           if (latestVersion == currentVersion) {
             console.log("Already on the latest version!");
           } else {

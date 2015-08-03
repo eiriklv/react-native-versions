@@ -14,8 +14,10 @@ Open the ExampleApp and run - it should load the latest bundle from the remote A
 Use the following command to push a new javascript bundle:
 
 ```
-~/reploy-cli/lib/index.js push
+~/reploy-cli/lib/reploy.js push
 ```
+
+Reloading the app should download and load the new bundle.
 
 # Updater API
 
@@ -40,7 +42,10 @@ See https://github.com/jsierles/reploy-web for the implementation.
 
 # TODO
 
-* Set the current JS version in NSUserDefaults
-* Don't download a new bundle if the current version matches the latest remote version
-* Add try/catch or other mechanism to handle bundle loading errors and fall back to main.jsbundle
-* Update AppDelegate.m to use updater in production
+* Error handling
+* native code to fall back to main.jsbundle when a remote bundle fails to load
+* Prompt user for input about updating
+
+# IDEAS
+
+* Use react-native-overlay to keep default updater UI on top

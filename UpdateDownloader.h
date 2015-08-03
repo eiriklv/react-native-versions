@@ -13,5 +13,7 @@
 - (void) downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion;
 - (void) discoverLatestVersion: (void (^)(NSError *err, NSDictionary *version))completion;
 - (void) downloadFileAtURL:(NSString*)urlPath ToPath:(NSString*)path Completion:(void(^)(NSError* err))completion;
+- (void) setUserDefaultsValueForKey:(NSString*)key value:(NSString *)value;
+- (void) getValueFromUserDefaultsForKey:(NSString*)key;
 
 @end

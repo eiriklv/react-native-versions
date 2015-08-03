@@ -6,6 +6,7 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
+    "bluebird": "^2.9.30",
     "react-native": "0.8.0-rc",
     "react-native-updater": "../"
   }

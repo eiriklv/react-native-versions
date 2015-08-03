@@ -15,6 +15,13 @@ var {
   }
 } = React;
 
+var Promise = require('bluebird');
+// we still want to see the red screen of death when
+// we have issues like wrong variables etc. within a promise chain
+Promise.onPossiblyUnhandledRejection((error) =>{
+  throw error;
+});
+
 var appId = '20ecc627-bef4-432c-8d65-0e7bd6090151';
 
 UpdateManager.configureUpdater({
@@ -22,25 +29,21 @@ UpdateManager.configureUpdater({
 });
 
 var list = UpdateManager.discoverLatestVersionAsync()
-  .then((latest) => {
-
-    if (latest.bundle_hash === UpdateManager.currentJSVersion) {
-      console.log("Already running current version " + UpdateManager.currentJSVersion);
-    } else {
-      UpdateManager.downloadVersionAsync(latest.bundle_hash)
-      .then((path) => {
-        console.log("downloaded "+latest.bundle_hash)
-        AppReloader.reloadAppWithURLString(path, "ExampleApp");
-      })
-      .catch((err) => {
-
-      });
-
-    }
-
-  })
-  .catch((err) => {
-    console.log(err);
+  .then((latestVersion) => {
+    console.log("latest version is "+latestVersion.bundle_hash)
+    UpdateManager.getCurrentJsVersion()
+    .then((currentVersion) => {
+      console.log("Current version is "+currentVersion);
+      if (latestVersion.bundle_hash === currentVersion) {
+        console.log("already on the latest version");
+      } else {
+        UpdateManager.downloadVersionAsync(latestVersion.bundle_hash)
+        .then((path) => {
+          UpdateManager.setCurrentJsVersion(latestVersion.bundle_hash);
+          AppReloader.reloadAppWithURLString(path, "ExampleApp");
+        })
+      }
+    });
   });
 
 var ExampleApp = React.createClass({

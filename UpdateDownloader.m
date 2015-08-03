@@ -23,7 +23,6 @@ static NSString *LOCAL_DIR = @"versions";
 - (id) init {
   if (self = [super init]) {
     self.binaryVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    self.currentJSVersion = [self getValueFromUserDefaultsForKey:kCurrentJSVersion];
   }
 
 //  [self downloadVersionList:^(NSError *err, NSArray *versionList) {
@@ -127,6 +126,12 @@ static NSString *LOCAL_DIR = @"versions";
 - (id) getValueFromUserDefaultsForKey:(NSString*)key {
   NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
   return [defaults objectForKey:key];
+}
+
+- (void) setUserDefaultsValueForKey:(NSString*)key value:(NSString *)value {
+  NSMutableDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
+  [[defaults objectForKey:key] setObject:value forKey:key];
+  [[NSUserDefaults standardUserDefaults] setObject:defaults forKey:kUpdaterData];
 }
 
 @end

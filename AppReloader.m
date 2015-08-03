@@ -25,7 +25,6 @@ RCT_EXPORT_MODULE()
  */
 RCT_EXPORT_METHOD(reloadAppWithURLString:(NSString *)URLString moduleNamed:(NSString *)moduleName)
 {
-  NSLog(URLString);
   AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSURL *JSBundleURL = [NSURL URLWithString:URLString];
 

@@ -22,6 +22,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		42FE052F1B6E858300DADA8F /* AppReloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FE052B1B6E858300DADA8F /* AppReloader.m */; };
+		42FE05301B6E858300DADA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FE052D1B6E858300DADA8F /* ViewController.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F102DFF71B542CB60077B86E /* UpdateDownloader.m */; };
 		F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1EE1B552F5800678A5B /* UpdateManager.m */; };
@@ -130,6 +132,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		42FE052B1B6E858300DADA8F /* AppReloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppReloader.m; path = ../AppReloader.m; sourceTree = "<group>"; };
+		42FE052C1B6E858300DADA8F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
+		42FE052D1B6E858300DADA8F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
+		42FE052E1B6E858300DADA8F /* AppReloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppReloader.h; path = ../AppReloader.h; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		F102DFF61B542CB60077B86E /* UpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateDownloader.h; path = ../UpdateDownloader.h; sourceTree = "<group>"; };
@@ -248,6 +254,10 @@
 		13B07FAE1A68108700A75B9A /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				42FE052B1B6E858300DADA8F /* AppReloader.m */,
+				42FE052C1B6E858300DADA8F /* ViewController.h */,
+				42FE052D1B6E858300DADA8F /* ViewController.m */,
+				42FE052E1B6E858300DADA8F /* AppReloader.h */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -551,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42FE05301B6E858300DADA8F /* ViewController.m in Sources */,
 				F1F26D2E1B567EFF00C850A3 /* NSString+MD5.m in Sources */,
 				F1F26D311B567F7C00C850A3 /* NSData+MD5.m in Sources */,
 				F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */,
@@ -558,6 +569,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */,
+				42FE052F1B6E858300DADA8F /* AppReloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

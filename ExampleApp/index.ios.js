@@ -11,17 +11,33 @@ var {
   Text,
   View,
   NativeModules: {
-    UpdateManager
+    UpdateManager, AppReloader
   }
 } = React;
 
+var appId = '20ecc627-bef4-432c-8d65-0e7bd6090151';
+
 UpdateManager.configureUpdater({
-  appId: 'a3325f20-b08c-4d8a-b313-d964c5d23bdc',
+  appId: appId,
 });
 
-UpdateManager.downloadVersionAsync('1f3b5bb596cdd49345812b113809b2cf')
-  .then((path) => {
-    console.log('DONE', path);
+var list = UpdateManager.discoverLatestVersionAsync()
+  .then((latest) => {
+
+    if (latest.bundle_hash === UpdateManager.currentJSVersion) {
+      console.log("Already running current version " + UpdateManager.currentJSVersion);
+    } else {
+      UpdateManager.downloadVersionAsync(latest.bundle_hash)
+      .then((path) => {
+        console.log("downloaded "+latest.bundle_hash)
+        AppReloader.reloadAppWithURLString(path, "ExampleApp");
+      })
+      .catch((err) => {
+
+      });
+
+    }
+
   })
   .catch((err) => {
     console.log(err);
@@ -32,14 +48,10 @@ var ExampleApp = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          React Native Update Sample App
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        <Text>
+        AppID: {appId}
         </Text>
       </View>
     );

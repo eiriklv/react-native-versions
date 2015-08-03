@@ -2,14 +2,15 @@
 
 @implementation UpdateDownloader
 
-static NSString *kUpdaterData = @"RNShellUpdaterData";
+static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
-static NSString *VERSION_LIST = @"http://www.reactnative.sh/apps/%@/%@/js_versions";
-static NSString *SINGLE_VERSION_PATH = @"http://www.reactnative.sh/apps/%@/%@/js_versions/%@";
+static NSString *VERSION_LIST = @"http://reploy.io/apps/%@/%@/js_versions";
+static NSString *LATEST_VERSION = @"http://reploy.io/apps/%@/%@/js_versions/latest";
+static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/apps/%@/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
-+ (id) sharedInstance {
++ (UpdateDownloader *) sharedInstance {
   static UpdateDownloader *sharedDownloader = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -21,10 +22,10 @@ static NSString *LOCAL_DIR = @"versions";
 
 - (id) init {
   if (self = [super init]) {
-    self.bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    self.binaryVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     self.currentJSVersion = [self getValueFromUserDefaultsForKey:kCurrentJSVersion];
   }
-  
+
 //  [self downloadVersionList:^(NSError *err, NSArray *versionList) {
 //    NSLog(@"DOWNLOAD COMPLETE");
 //    NSArray *newVersions = Underscore.array(versionList)
@@ -33,7 +34,7 @@ static NSString *LOCAL_DIR = @"versions";
 //        return [[version objectForKey:@"bundle_hash"] isEqualToString:self.currentJSVersion];
 //      })
 //      .unwrap;
-//    
+//
 //    NSLog(@"%@", newVersions);
 //  }];
 
@@ -46,11 +47,20 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (void) downloadVersionList:(void (^)(NSError *err, NSArray *versionList))completion {
-  NSString *versionsPath = [NSString stringWithFormat:VERSION_LIST, self.appId, self.bundleVersion];
+  NSString *versionsPath = [NSString stringWithFormat:VERSION_LIST, self.appId, self.binaryVersion];
   [self downloadURLContents:versionsPath Completion:^(NSError *err, NSData *data) {
     NSError *error;
     NSArray *versionList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     completion(error, versionList);
+  }];
+}
+
+- (void) discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
+  NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.binaryVersion];
+  [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
+    NSError *error;
+    NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    completion(error, version);
   }];
 }
 
@@ -118,4 +128,5 @@ static NSString *LOCAL_DIR = @"versions";
   NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
   return [defaults objectForKey:key];
 }
+
 @end

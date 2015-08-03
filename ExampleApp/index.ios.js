@@ -29,17 +29,18 @@ UpdateManager.configureUpdater({
 });
 
 var list = UpdateManager.discoverLatestVersionAsync()
-  .then((latestVersion) => {
-    console.log("latest version is "+latestVersion.bundle_hash)
+  .then((latestVersionData) => {
+    var latestVersion = latestVersionData.version_number
+    console.log("latest version: "+latestVersion)
     UpdateManager.getCurrentJsVersion()
     .then((currentVersion) => {
-      console.log("Current version is "+currentVersion);
-      if (latestVersion.bundle_hash === currentVersion) {
+      console.log("Current version: "+currentVersion);
+      if (latestVersion == currentVersion) {
         console.log("already on the latest version");
       } else {
-        UpdateManager.downloadVersionAsync(latestVersion.bundle_hash)
+        UpdateManager.downloadVersionAsync(latestVersion)
         .then((path) => {
-          UpdateManager.setCurrentJsVersion(latestVersion.bundle_hash);
+          UpdateManager.setCurrentJsVersion(latestVersion);
           AppReloader.reloadAppWithURLString(path, "ExampleApp");
         })
       }
@@ -47,6 +48,24 @@ var list = UpdateManager.discoverLatestVersionAsync()
   });
 
 var ExampleApp = React.createClass({
+
+  getInitialState() {
+    return {
+      currentJsVersion: null
+    }
+  },
+
+  renderCurrentJsVersion() {
+    UpdateManager.getCurrentJsVersion()
+    .then((version) => {
+      this.setState({currentJsVersion: version});
+    });
+  },
+
+  componentDidMount() {
+    this.renderCurrentJsVersion();
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
@@ -55,6 +74,9 @@ var ExampleApp = React.createClass({
         </Text>
         <Text>
         AppID: {appId}
+        </Text>
+        <Text>
+        Current JS version: {this.state.currentJsVersion}
         </Text>
       </View>
     );

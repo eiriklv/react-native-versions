@@ -10,6 +10,7 @@ var {
   StyleSheet,
   Text,
   View,
+  AlertIOS,
   NativeModules: {
     UpdateManager, AppReloader
   }
@@ -28,25 +29,6 @@ UpdateManager.configureUpdater({
   appId: appId,
 });
 
-var list = UpdateManager.discoverLatestVersionAsync()
-  .then((latestVersionData) => {
-    var latestVersion = latestVersionData.version_number
-    console.log("latest version: "+latestVersion)
-    UpdateManager.getCurrentJsVersion()
-    .then((currentVersion) => {
-      console.log("Current version: "+currentVersion);
-      if (latestVersion == currentVersion) {
-        console.log("already on the latest version");
-      } else {
-        UpdateManager.downloadVersionAsync(latestVersion)
-        .then((path) => {
-          UpdateManager.setCurrentJsVersion(latestVersion);
-          AppReloader.reloadAppWithURLString(path, "ExampleApp");
-        })
-      }
-    });
-  });
-
 var ExampleApp = React.createClass({
 
   getInitialState() {
@@ -62,8 +44,37 @@ var ExampleApp = React.createClass({
     });
   },
 
+  updateToVersion(version) {
+    UpdateManager.downloadVersionAsync(version)
+    .then((path) => {
+      UpdateManager.setCurrentJsVersion(version);
+      AppReloader.reloadAppWithURLString(path, "ExampleApp");
+    })
+  },
+
   componentDidMount() {
-    this.renderCurrentJsVersion();
+    UpdateManager.discoverLatestVersionAsync()
+      .then((latestVersionData) => {
+        var latestVersion = latestVersionData.version_number
+        UpdateManager.getCurrentJsVersion()
+        .then((currentVersion) => {
+          this.renderCurrentJsVersion();
+          if (latestVersion == currentVersion) {
+            console.log("Already on the latest version!");
+          } else {
+            AlertIOS.alert(
+              'Application update available',
+              `Would you like to upgrade to version ${latestVersion}?`,
+              [
+                {text: 'Cancel', onPress: () => console.log('Cancelled')},
+                {text: 'Update', onPress: () => this.updateToVersion(latestVersion)},
+              ]
+            )
+
+          }
+        });
+      });
+
   },
 
   render: function() {

@@ -24,19 +24,6 @@ static NSString *LOCAL_DIR = @"versions";
   if (self = [super init]) {
     self.binaryVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
   }
-
-//  [self downloadVersionList:^(NSError *err, NSArray *versionList) {
-//    NSLog(@"DOWNLOAD COMPLETE");
-//    NSArray *newVersions = Underscore.array(versionList)
-//      .filter(Underscore.isDictionary)
-//      .reject(^BOOL (NSDictionary *version) {
-//        return [[version objectForKey:@"bundle_hash"] isEqualToString:self.currentJSVersion];
-//      })
-//      .unwrap;
-//
-//    NSLog(@"%@", newVersions);
-//  }];
-
   return self;
 }
 

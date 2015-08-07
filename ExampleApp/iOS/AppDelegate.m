@@ -1,15 +1,9 @@
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
+// #define RCT_DEV 0
+// #define RCT_DEBUG 0
 
 #import "AppDelegate.h"
-
 #import "RCTRootView.h"
+#import "VersionManager.h"
 
 @implementation AppDelegate
 
@@ -20,35 +14,28 @@ int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
   NSURL *jsCodeLocation;
 
-  /**
-   * Loading JavaScript code - uncomment the one you want.
-   *
-   * OPTION 1
-   * Load from development server. Start the server from the repository root:
-   *
-   * $ npm start
-   *
-   * To run on device, change `localhost` to the IP address of your computer
-   * (you can get this by typing `ifconfig` into the terminal and selecting the
-   * `inet` value under `en0:`) and make sure your computer and iOS device are
-   * on the same Wi-Fi network.
-   */
+  #if RCT_DEV
 
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
+    // for development
 
-  /**
-   * OPTION 2
-   * Load from pre-bundled file on disk. To re-generate the static bundle
-   * from the root of your project directory, run
-   *
-   * $ react-native bundle --minify
-   *
-   * see http://facebook.github.io/react-native/docs/runningondevice.html
-   */
+    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
 
-//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  #else
+
+    // for releases
+
+    NSString *path = [VersionManager pathForCurrentVersion];
+
+    if (path) {
+      jsCodeLocation = [NSURL URLWithString:path];
+    } else {
+      jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+    }
+
+  #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"ExampleApp"

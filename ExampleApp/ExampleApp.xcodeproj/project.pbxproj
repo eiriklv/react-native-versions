@@ -22,14 +22,15 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		42FE052F1B6E858300DADA8F /* AppReloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FE052B1B6E858300DADA8F /* AppReloader.m */; };
-		42FE05301B6E858300DADA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FE052D1B6E858300DADA8F /* ViewController.m */; };
+		427DB3921B7418F400129C95 /* VersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3831B7418F400129C95 /* VersionManager.m */; };
+		427DB3931B7418F400129C95 /* AppReloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3841B7418F400129C95 /* AppReloader.m */; };
+		427DB3941B7418F400129C95 /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3851B7418F400129C95 /* UpdateManager.m */; };
+		427DB3951B7418F400129C95 /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3861B7418F400129C95 /* UpdateDownloader.m */; };
+		427DB3961B7418F400129C95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3881B7418F400129C95 /* ViewController.m */; };
+		427DB3971B7418F400129C95 /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB38C1B7418F400129C95 /* BundleManager.m */; };
+		427DB3981B7418F400129C95 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB38E1B7418F400129C95 /* NSData+MD5.m */; };
+		427DB3991B7418F400129C95 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3901B7418F400129C95 /* NSString+MD5.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F102DFF71B542CB60077B86E /* UpdateDownloader.m */; };
-		F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1EE1B552F5800678A5B /* UpdateManager.m */; };
-		F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F112B1FB1B553F0D00678A5B /* BundleManager.m */; };
-		F1F26D2E1B567EFF00C850A3 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */; };
-		F1F26D311B567F7C00C850A3 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F26D301B567F7C00C850A3 /* NSData+MD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,22 +133,24 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		42FE052B1B6E858300DADA8F /* AppReloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppReloader.m; path = ../AppReloader.m; sourceTree = "<group>"; };
-		42FE052C1B6E858300DADA8F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
-		42FE052D1B6E858300DADA8F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
-		42FE052E1B6E858300DADA8F /* AppReloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppReloader.h; path = ../AppReloader.h; sourceTree = "<group>"; };
+		427DB3821B7418F400129C95 /* VersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionManager.h; path = ../iOS/VersionManager.h; sourceTree = "<group>"; };
+		427DB3831B7418F400129C95 /* VersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VersionManager.m; path = ../iOS/VersionManager.m; sourceTree = "<group>"; };
+		427DB3841B7418F400129C95 /* AppReloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppReloader.m; path = ../iOS/AppReloader.m; sourceTree = "<group>"; };
+		427DB3851B7418F400129C95 /* UpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateManager.m; path = ../iOS/UpdateManager.m; sourceTree = "<group>"; };
+		427DB3861B7418F400129C95 /* UpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateDownloader.m; path = ../iOS/UpdateDownloader.m; sourceTree = "<group>"; };
+		427DB3871B7418F400129C95 /* UpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateDownloader.h; path = ../iOS/UpdateDownloader.h; sourceTree = "<group>"; };
+		427DB3881B7418F400129C95 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../iOS/ViewController.m; sourceTree = "<group>"; };
+		427DB3891B7418F400129C95 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../iOS/ViewController.h; sourceTree = "<group>"; };
+		427DB38A1B7418F400129C95 /* AppReloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppReloader.h; path = ../iOS/AppReloader.h; sourceTree = "<group>"; };
+		427DB38B1B7418F400129C95 /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundleManager.h; path = ../iOS/BundleManager.h; sourceTree = "<group>"; };
+		427DB38C1B7418F400129C95 /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundleManager.m; path = ../iOS/BundleManager.m; sourceTree = "<group>"; };
+		427DB38D1B7418F400129C95 /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MD5.h"; path = "../iOS/NSData+MD5.h"; sourceTree = "<group>"; };
+		427DB38E1B7418F400129C95 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MD5.m"; path = "../iOS/NSData+MD5.m"; sourceTree = "<group>"; };
+		427DB38F1B7418F400129C95 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "../iOS/NSString+MD5.h"; sourceTree = "<group>"; };
+		427DB3901B7418F400129C95 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "../iOS/NSString+MD5.m"; sourceTree = "<group>"; };
+		427DB3911B7418F400129C95 /* UpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateManager.h; path = ../iOS/UpdateManager.h; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		F102DFF61B542CB60077B86E /* UpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateDownloader.h; path = ../UpdateDownloader.h; sourceTree = "<group>"; };
-		F102DFF71B542CB60077B86E /* UpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateDownloader.m; path = ../UpdateDownloader.m; sourceTree = "<group>"; };
-		F112B1ED1B552F5800678A5B /* UpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateManager.h; path = ../UpdateManager.h; sourceTree = "<group>"; };
-		F112B1EE1B552F5800678A5B /* UpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateManager.m; path = ../UpdateManager.m; sourceTree = "<group>"; };
-		F112B1FA1B553F0D00678A5B /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundleManager.h; path = ../BundleManager.h; sourceTree = "<group>"; };
-		F112B1FB1B553F0D00678A5B /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundleManager.m; path = ../BundleManager.m; sourceTree = "<group>"; };
-		F1F26D2C1B567EFF00C850A3 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "../NSString+MD5.h"; sourceTree = "<group>"; };
-		F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "../NSString+MD5.m"; sourceTree = "<group>"; };
-		F1F26D2F1B567F7C00C850A3 /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MD5.h"; path = "../NSData+MD5.h"; sourceTree = "<group>"; };
-		F1F26D301B567F7C00C850A3 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MD5.m"; path = "../NSData+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,23 +257,25 @@
 		13B07FAE1A68108700A75B9A /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				42FE052B1B6E858300DADA8F /* AppReloader.m */,
-				42FE052C1B6E858300DADA8F /* ViewController.h */,
-				42FE052D1B6E858300DADA8F /* ViewController.m */,
-				42FE052E1B6E858300DADA8F /* AppReloader.h */,
+				427DB3821B7418F400129C95 /* VersionManager.h */,
+				427DB3831B7418F400129C95 /* VersionManager.m */,
+				427DB3841B7418F400129C95 /* AppReloader.m */,
+				427DB3851B7418F400129C95 /* UpdateManager.m */,
+				427DB3861B7418F400129C95 /* UpdateDownloader.m */,
+				427DB3871B7418F400129C95 /* UpdateDownloader.h */,
+				427DB3881B7418F400129C95 /* ViewController.m */,
+				427DB3891B7418F400129C95 /* ViewController.h */,
+				427DB38A1B7418F400129C95 /* AppReloader.h */,
+				427DB38B1B7418F400129C95 /* BundleManager.h */,
+				427DB38C1B7418F400129C95 /* BundleManager.m */,
+				427DB38D1B7418F400129C95 /* NSData+MD5.h */,
+				427DB38E1B7418F400129C95 /* NSData+MD5.m */,
+				427DB38F1B7418F400129C95 /* NSString+MD5.h */,
+				427DB3901B7418F400129C95 /* NSString+MD5.m */,
+				427DB3911B7418F400129C95 /* UpdateManager.h */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				F112B1FA1B553F0D00678A5B /* BundleManager.h */,
-				F112B1FB1B553F0D00678A5B /* BundleManager.m */,
-				F112B1ED1B552F5800678A5B /* UpdateManager.h */,
-				F112B1EE1B552F5800678A5B /* UpdateManager.m */,
-				F102DFF61B542CB60077B86E /* UpdateDownloader.h */,
-				F102DFF71B542CB60077B86E /* UpdateDownloader.m */,
-				F1F26D2C1B567EFF00C850A3 /* NSString+MD5.h */,
-				F1F26D2D1B567EFF00C850A3 /* NSString+MD5.m */,
-				F1F26D2F1B567F7C00C850A3 /* NSData+MD5.h */,
-				F1F26D301B567F7C00C850A3 /* NSData+MD5.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -561,15 +566,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42FE05301B6E858300DADA8F /* ViewController.m in Sources */,
-				F1F26D2E1B567EFF00C850A3 /* NSString+MD5.m in Sources */,
-				F1F26D311B567F7C00C850A3 /* NSData+MD5.m in Sources */,
-				F112B1FC1B553F0D00678A5B /* BundleManager.m in Sources */,
-				F112B1EF1B552F5800678A5B /* UpdateManager.m in Sources */,
+				427DB3961B7418F400129C95 /* ViewController.m in Sources */,
+				427DB3981B7418F400129C95 /* NSData+MD5.m in Sources */,
+				427DB3991B7418F400129C95 /* NSString+MD5.m in Sources */,
+				427DB3921B7418F400129C95 /* VersionManager.m in Sources */,
+				427DB3941B7418F400129C95 /* UpdateManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				F102DFF81B542CB60077B86E /* UpdateDownloader.m in Sources */,
-				42FE052F1B6E858300DADA8F /* AppReloader.m in Sources */,
+				427DB3931B7418F400129C95 /* AppReloader.m in Sources */,
+				427DB3951B7418F400129C95 /* UpdateDownloader.m in Sources */,
+				427DB3971B7418F400129C95 /* BundleManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

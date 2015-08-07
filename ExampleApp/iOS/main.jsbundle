@@ -1395,11 +1395,7 @@ throw new TypeError(
 
 var index=findIndex.call(this, predicate, context);
 return index === -1?undefined:this[index];}});}})();
-__d('ExampleApp/index.ios.js',["react-native/Libraries/react-native/react-native.js","bluebird/js/browser/bluebird.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
-
-
-
-
+__d('ExampleApp/index.ios.js',["react-native/Libraries/react-native/react-native.js","ExampleApp/VersionManager.ios.js","bluebird/js/browser/bluebird.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React=require('react-native/Libraries/react-native/react-native.js');var 
 
@@ -1408,23 +1404,19 @@ AppRegistry=
 
 
 
+React.AppRegistry;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var AlertIOS=React.AlertIOS;
+
+var VersionManager=require('ExampleApp/VersionManager.ios.js');
 
 
-
-React.AppRegistry;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var AlertIOS=React.AlertIOS;var _React$NativeModules=React.NativeModules;var UpdateManager=_React$NativeModules.UpdateManager;var AppReloader=_React$NativeModules.AppReloader;
 
 var Promise=require('bluebird/js/browser/bluebird.js');
-
 
 Promise.onPossiblyUnhandledRejection(function(error){
 throw error;});
 
 
-var appId='20ecc627-bef4-432c-8d65-0e7bd6090151';
-
-UpdateManager.configureUpdater({
-appId:appId});
-
+var moduleName='ExampleApp';
 
 var ExampleApp=React.createClass({displayName:'ExampleApp', 
 
@@ -1434,58 +1426,13 @@ currentJsVersion:null};},
 
 
 
-renderCurrentJsVersion:function(){var _this=this;
-UpdateManager.getCurrentJsVersion().
-then(function(version){
-_this.setState({currentJsVersion:version});});}, 
-
-
-
-updateToVersion:function(version){
-UpdateManager.downloadVersionAsync(version).
-then(function(path){
-UpdateManager.setCurrentJsVersion(version);
-AppReloader.reloadAppWithURLString(path, 'ExampleApp');});}, 
-
-
-
-componentDidMount:function(){var _this2=this;
-UpdateManager.discoverLatestVersionAsync().
-then(function(latestVersionData){
-var latestVersion=latestVersionData.version_number;
-UpdateManager.getCurrentJsVersion().
-then(function(currentVersion){
-_this2.renderCurrentJsVersion();
-if(latestVersion == currentVersion){
-console.log('Already on the latest version!');}else 
-{
-AlertIOS.alert(
-'Application update available', 'Would you like to upgrade to version ' + 
-latestVersion + '?', 
-[
-{text:'Cancel', onPress:function(){return console.log('Cancelled');}}, 
-{text:'Update', onPress:function(){return _this2.updateToVersion(latestVersion);}}]);}});});}, 
-
-
-
-
-
-
-
-
-
 render:function(){
 return (
 React.createElement(View, {style:styles.container}, 
 React.createElement(Text, {style:styles.welcome}, 'React Native Update Sample App'), 
 
 
-React.createElement(Text, null, 'AppID: ', 
-appId), 
-
-React.createElement(Text, null, 'Current JS version: ', 
-this.state.currentJsVersion)));}});
-
+React.createElement(VersionManager, {appId:'20ecc627-bef4-432c-8d65-0e7bd6090151', active:true, moduleName:moduleName})));}});
 
 
 
@@ -1510,7 +1457,7 @@ marginBottom:5}});
 
 
 
-AppRegistry.registerComponent('ExampleApp', function(){return ExampleApp;});
+AppRegistry.registerComponent(moduleName, function(){return ExampleApp;});
 });
 __d('react-native/Libraries/react-native/react-native.js',["React","ActivityIndicatorIOS","DatePickerIOS","Image","ListView","MapView","Navigator","NavigatorIOS","PickerIOS","ProgressViewIOS","ScrollView","SegmentedControlIOS","SliderIOS","SwitchIOS","TabBarIOS","Text","TextInput","TouchableHighlight","TouchableOpacity","TouchableWithoutFeedback","View","WebView","ActionSheetIOS","AdSupportIOS","AlertIOS","Animated","AppRegistry","AppStateIOS","AsyncStorage","CameraRoll","Dimensions","Easing","ImagePickerIOS","InteractionManager","LayoutAnimation","LinkingIOS","NetInfo","PanResponder","PixelRatio","PushNotificationIOS","Settings","StatusBarIOS","StyleSheet","VibrationIOS","RCTDeviceEventEmitter","RCTNativeAppEventEmitter","NativeModules","Platform","requireNativeComponent","EdgeInsetsPropType","PointPropType","LinkedStateMixin","ReactComponentWithPureRenderMixin","NativeModules","ReactUpdates","cloneWithProps","ReactFragment","update","ReactDefaultPerf","ReactTestUtils"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
@@ -10431,7 +10378,6 @@ __d('promise/setimmediate/es6-extensions.js',["promise/setimmediate/core.js"],fu
 
 var Promise=require('promise/setimmediate/core.js');
 
-
 module.exports = Promise;
 
 
@@ -10444,9 +10390,9 @@ var ZERO=valuePromise(0);
 var EMPTYSTRING=valuePromise('');
 
 function valuePromise(value){
-var p=new Promise(Promise._1);
-p._41 = 1;
-p._86 = value;
+var p=new Promise(Promise._99);
+p._37 = 1;
+p._12 = value;
 return p;}
 
 Promise.resolve = function(value){
@@ -10483,11 +10429,11 @@ var remaining=args.length;
 function res(i, val){
 if(val && (typeof val === 'object' || typeof val === 'function')){
 if(val instanceof Promise && val.then === Promise.prototype.then){
-while(val._41 === 3) {
-val = val._86;}
+while(val._37 === 3) {
+val = val._12;}
 
-if(val._41 === 1)return res(i, val._86);
-if(val._41 === 2)reject(val._86);
+if(val._37 === 1)return res(i, val._12);
+if(val._37 === 2)reject(val._12);
 val.then(function(val){
 res(i, val);}, 
 reject);
@@ -10593,13 +10539,13 @@ throw new TypeError('Promises must be constructed via new');}
 if(typeof fn !== 'function'){
 throw new TypeError('not a function');}
 
-this._41 = 0;
-this._86 = null;
-this._17 = [];
+this._37 = 0;
+this._12 = null;
+this._59 = [];
 if(fn === noop)return;
 doResolve(fn, this);}
 
-Promise._1 = noop;
+Promise._99 = noop;
 
 Promise.prototype.then = function(onFulfilled, onRejected){
 if(this.constructor !== Promise){
@@ -10618,24 +10564,24 @@ handle(self, new Handler(onFulfilled, onRejected, res));});}
 
 ;
 function handle(self, deferred){
-while(self._41 === 3) {
-self = self._86;}
+while(self._37 === 3) {
+self = self._12;}
 
-if(self._41 === 0){
-self._17.push(deferred);
+if(self._37 === 0){
+self._59.push(deferred);
 return;}
 
 setImmediate(function(){
-var cb=self._41 === 1?deferred.onFulfilled:deferred.onRejected;
+var cb=self._37 === 1?deferred.onFulfilled:deferred.onRejected;
 if(cb === null){
-if(self._41 === 1){
-resolve(deferred.promise, self._86);}else 
+if(self._37 === 1){
+resolve(deferred.promise, self._12);}else 
 {
-reject(deferred.promise, self._86);}
+reject(deferred.promise, self._12);}
 
 return;}
 
-var ret=tryCallOne(cb, self._86);
+var ret=tryCallOne(cb, self._12);
 if(ret === IS_ERROR){
 reject(deferred.promise, LAST_ERROR);}else 
 {
@@ -10663,8 +10609,8 @@ if(
 then === self.then && 
 newValue instanceof Promise)
 {
-self._41 = 3;
-self._86 = newValue;
+self._37 = 3;
+self._12 = newValue;
 finale(self);
 return;}else 
 if(typeof then === 'function'){
@@ -10672,21 +10618,21 @@ doResolve(then.bind(newValue), self);
 return;}}
 
 
-self._41 = 1;
-self._86 = newValue;
+self._37 = 1;
+self._12 = newValue;
 finale(self);}
 
 
 function reject(self, newValue){
-self._41 = 2;
-self._86 = newValue;
+self._37 = 2;
+self._12 = newValue;
 finale(self);}
 
 function finale(self){
-for(var i=0; i < self._17.length; i++) {
-handle(self, self._17[i]);}
+for(var i=0; i < self._59.length; i++) {
+handle(self, self._59[i]);}
 
-self._17 = null;}
+self._59 = null;}
 
 
 function Handler(onFulfilled, onRejected, promise){
@@ -50623,6 +50569,1006 @@ Object.keys(componentOrElement));}
 
 
 module.exports = findDOMNode;
+});
+__d('ExampleApp/VersionManager.ios.js',["Modal","react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+View=
+
+
+
+
+
+
+
+React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var _React$NativeModules=React.NativeModules;var VersionManager=_React$NativeModules.VersionManager;var AppReloader=_React$NativeModules.AppReloader;
+
+var Modal=require('Modal');
+
+var Versions=React.createClass({displayName:'Versions', 
+propTypes:{
+
+
+
+active:React.PropTypes.bool, 
+
+
+
+moduleName:React.PropTypes.string.isRequired}, 
+
+
+getDefaultProps:function(){
+return {
+active:false, 
+moduleName:'ExampleApp'};}, 
+
+
+
+closeModal:function(){
+this.setState({modalVisible:false});}, 
+
+
+getInitialState:function(){
+return {
+modalVisible:false};}, 
+
+
+
+updateToVersion:function(version){var _this=this;
+VersionManager.downloadVersionAsync(version).
+then(function(path){
+VersionManager.setCurrentJsVersion(version);
+AppReloader.reloadAppWithURLString(path, _this.props.moduleName);});}, 
+
+
+
+componentDidMount:function(){var _this2=this;
+
+VersionManager.configureUpdater({appId:this.props.appId});
+
+VersionManager.getCurrentJsVersion().
+catch(function(err){
+console.log(err);}).
+
+then(function(currentVersion){
+VersionManager.discoverLatestVersionAsync().
+catch(function(err){
+
+console.log(err);}).
+
+then(function(latestVersionData){
+var latestVersion=latestVersionData.version_number;
+if(latestVersion == currentVersion){
+console.log('Already on the latest version!');}else 
+{
+console.log('modal');
+_this2.setState({modalVisible:true, version:latestVersion});}});});}, 
+
+
+
+
+
+render:function(){var _this3=this;
+if(this.props.active){
+return (
+React.createElement(Modal, {forceToFront:true, isVisible:this.state.modalVisible}, 
+React.createElement(Text, {style:styles.title}, 'Do you want to update to version ', this.state.version, '?'), 
+React.createElement(TouchableOpacity, {onPress:function(){return _this3.closeModal();}}, 
+React.createElement(Text, {style:styles.button}, 'Cancel')), 
+
+React.createElement(TouchableOpacity, {onPress:function(){return _this3.updateToVersion(_this3.state.version);}}, 
+React.createElement(Text, {style:styles.button}, 'Update now'))));}else 
+
+
+
+{
+return React.createElement(View, null);}}});
+
+
+
+
+var styles=StyleSheet.create({
+title:{
+fontSize:15, 
+fontWeight:'500', 
+textAlign:'center', 
+marginBottom:10}, 
+
+button:{
+fontSize:15, 
+fontWeight:'500', 
+textAlign:'center', 
+borderWidth:1, 
+borderColor:'#aaa', 
+borderRadius:5, 
+margin:5, 
+padding:5}});
+
+
+
+module.exports = Versions;
+});
+__d('Modal',["Overlay","react-native/Libraries/react-native/react-native.js","react-native-modal/Transitions.js","react-native-modal/Style.js","react-native-blur/index.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+
+
+
+
+
+var merge=require('merge');
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+View=
+
+
+
+
+React.View;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var TouchableWithoutFeedback=React.TouchableWithoutFeedback;var PropTypes=React.PropTypes;
+
+var Transitions=require('react-native-modal/Transitions.js');
+var DefaultStyles=require('react-native-modal/Style.js');
+var Overlay=require('Overlay');
+var BlurView=require('react-native-blur/index.js').BlurView;
+var noop=function(){};
+
+var ModalMixin={
+getInitialState:function(){
+return {isModalOpen:false};}, 
+
+
+openModal:function(){
+this.setState({isModalOpen:true});}, 
+
+
+closeModal:function(){
+this.setState({isModalOpen:false});}};
+
+
+
+var Modal=React.createClass({displayName:'Modal', 
+mixins:[Transitions.Mixin], 
+
+statics:{
+transitionEasings:Transitions.Easings, 
+Mixin:ModalMixin, 
+DefaultStyles:DefaultStyles}, 
+
+
+propTypes:{
+isVisible:PropTypes.bool, 
+hideCloseButton:PropTypes.bool, 
+backdropType:PropTypes.string, 
+onClose:PropTypes.func, 
+onPressBackdrop:PropTypes.func, 
+customCloseButton:PropTypes.node, 
+customShowHandler:PropTypes.func, 
+customHideHandler:PropTypes.func, 
+forceToFront:PropTypes.bool, 
+containerPointerEvents:PropTypes.string}, 
+
+
+getDefaultProps:function(){
+return {
+isVisible:false, 
+hideCloseButton:false, 
+onClose:noop, 
+onPressBackdrop:noop, 
+backdropType:'plain', 
+backdropBlur:'light', 
+forceToFront:false, 
+containerPointerEvents:'auto'};}, 
+
+
+
+componentWillReceiveProps:function(nextProps){
+var willBeVisible=nextProps.isVisible;var _props=
+
+
+
+
+this.props;var isVisible=_props.isVisible;var customShowHandler=_props.customShowHandler;var customHideHandler=_props.customHideHandler;
+
+if(willBeVisible !== isVisible){
+var fadeIn=function(t){return t('opacity', {duration:300, begin:0, end:1});};
+var fadeOut=function(t){return t('opacity', {duration:300, end:0});};
+
+if(willBeVisible){
+var showHandler=customShowHandler || fadeIn;
+showHandler(this.transition);}else 
+{
+var hideHandler=customHideHandler || fadeOut;
+hideHandler(this.transition);}}}, 
+
+
+
+
+renderCloseButton:function(){var _props2=
+
+
+
+
+this.props;var customCloseButton=_props2.customCloseButton;var hideCloseButton=_props2.hideCloseButton;var onClose=_props2.onClose;
+
+var styles=this.props.style || DefaultStyles;
+
+if(customCloseButton){
+return React.addons.cloneWithProps(customCloseButton, null);}else 
+if(!hideCloseButton && onClose){
+return (
+React.createElement(View, {style:styles.closeButton}, 
+React.createElement(TouchableOpacity, {onPress:onClose}, 
+React.createElement(Text, {style:styles.closeButtonText}, 'Close'))));}}, 
+
+
+
+
+
+
+renderBody:function(){
+var styles=this.props.style || DefaultStyles;
+
+var responderProps=this.extractResponderProps();
+
+return (
+React.createElement(View, responderProps, 
+this.renderCloseButton(), 
+React.createElement(View, {style:styles.modal, pointerEvents:this.props.containerPointerEvents}, 
+React.Children.map(this.props.children, React.addons.cloneWithProps))));}, 
+
+
+
+
+
+extractResponderProps:function(){
+var responderProps={};
+if(this.props.onMoveShouldSetResponder)responderProps.onMoveShouldSetResponder = this.props.onMoveShouldSetResponder;
+if(this.props.onMoveShouldSetResponderCapture)responderProps.onMoveShouldSetResponderCapture = this.props.onMoveShouldSetResponderCapture;
+if(this.props.onResponderEnd)responderProps.onResponderEnd = this.props.onResponderEnd;
+if(this.props.onResponderGrant)responderProps.onResponderGrant = this.props.onResponderGrant;
+if(this.props.onResponderMove)responderProps.onResponderMove = this.props.onResponderMove;
+if(this.props.onResponderReject)responderProps.onResponderReject = this.props.onResponderReject;
+if(this.props.onResponderRelease)responderProps.onResponderRelease = this.props.onResponderRelease;
+if(this.props.onResponderStart)responderProps.onResponderStart = this.props.onResponderStart;
+if(this.props.onResponderTerminate)responderProps.onResponderTerminate = this.props.onResponderTerminate;
+if(this.props.onResponderTerminationRequest)responderProps.onResponderTerminationRequest = this.props.onResponderTerminationRequest;
+if(this.props.onStartShouldSetResponder)responderProps.onStartShouldSetResponder = this.props.onStartShouldSetResponder;
+if(this.props.onStartShouldSetResponderCapture)responderProps.onStartShouldSetResponderCapture = this.props.onStartShouldSetResponderCapture;
+return responderProps;}, 
+
+
+renderModal:function(){var _props3=
+
+
+
+
+this.props;var onPressBackdrop=_props3.onPressBackdrop;var backdropType=_props3.backdropType;var backdropBlur=_props3.backdropBlur;
+
+var styles=this.props.style || DefaultStyles;
+var body=this.renderBody();
+
+if(backdropType == 'plain'){
+return (
+React.createElement(View, {style:[styles.container, this.transitionStyles()]}, 
+React.createElement(TouchableWithoutFeedback, {onPress:onPressBackdrop}, 
+React.createElement(View, {style:styles.backdrop})), 
+
+body));}else 
+
+
+if(backdropType === 'none'){
+return (
+React.createElement(View, {style:[styles.container, this.transitionStyles()]}, 
+body));}else 
+
+
+{
+return (
+React.createElement(TouchableWithoutFeedback, {onPress:onPressBackdrop}, 
+React.createElement(BlurView, {blurType:backdropBlur, style:[styles.container, this.transitionStyles()]}, 
+body)));}}, 
+
+
+
+
+
+
+render:function(){
+var styles=this.props.style || DefaultStyles;var _props4=
+this.props;var isVisible=_props4.isVisible;var forceToFront=_props4.forceToFront;
+
+if(!isVisible && !this.state.isTransitioning){
+return React.createElement(View, null);}
+
+
+if(forceToFront){
+return (
+React.createElement(Overlay, {isVisible:true, aboveStatusBar:true, style:styles.container}, 
+this.renderModal()));}else 
+
+
+{
+return (
+React.createElement(View, {style:styles.container}, this.renderModal()));}}});
+
+
+
+
+
+module.exports = Modal;
+});
+__d('react-native-modal/Transitions.js',["react-tween-state/index.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';var _require=
+
+require('react-tween-state/index.js');var Mixin=_require.Mixin;var easingTypes=_require.easingTypes;
+
+var Transitions=Object.assign(Mixin, {
+getInitialState:function(){
+return {
+isTransitioning:false, 
+tweenQueue:[], 
+tweenProperties:[]};}, 
+
+
+
+transition:function(property, options){var _this=this;
+this.setState({isTransitioning:true});
+
+
+if(this.state.tweenProperties.indexOf(property) === -1){
+
+
+this.state.tweenProperties.push(property);}
+
+
+
+var begin=typeof options.begin === 'undefined'?this.state[property]:options.begin;
+this.tweenState(property, {
+easing:options.easing || easingTypes.easeInOutQuad, 
+duration:options.duration || 300, 
+delay:options.delay, 
+beginValue:begin, 
+endValue:options.end, 
+onEnd:function(){
+
+requestAnimationFrame(function(){
+
+if(!_this.state.tweenQueue.length){
+_this.setState({isTransitioning:false});}
+
+
+
+if(options.reset){
+_this.state[property] = begin;}
+
+
+
+if(options.onEnd){
+options.onEnd();}});}});}, 
+
+
+
+
+
+
+transitionStyles:function(propertySet){var _this2=this;
+if(typeof propertySet === 'undefined'){
+propertySet = [];}
+
+var result={};
+
+this.state.tweenProperties.forEach(function(property){
+if(propertySet.length === 0 || propertySet.indexOf(property) > -1){
+var value, tweeningValue=_this2.getTweeningValue(property);
+
+if(typeof tweeningValue === 'undefined' || tweeningValue === null){
+value = _this2.state[property];}else 
+{
+value = tweeningValue;}
+
+
+result[property] = value;}});
+
+
+
+return result;}});
+
+
+
+module.exports = {
+Mixin:Transitions, 
+Easings:easingTypes};
+});
+__d('react-tween-state/index.js',["tween-functions/index.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var easingTypes=require('tween-functions/index.js');
+
+
+
+
+var DEFAULT_STACK_BEHAVIOR='ADDITIVE';
+var DEFAULT_EASING=easingTypes.easeInOutQuad;
+var DEFAULT_DURATION=300;
+var DEFAULT_DELAY=0;
+
+
+function returnState(state){
+return state;}
+
+
+var tweenState={
+easingTypes:easingTypes, 
+stackBehavior:{
+ADDITIVE:'ADDITIVE', 
+DESTRUCTIVE:'DESTRUCTIVE'}};
+
+
+
+tweenState.Mixin = {
+getInitialState:function(){
+return {
+tweenQueue:[]};}, 
+
+
+
+tweenState:function(a, b, c){
+
+
+
+
+
+
+
+
+if(typeof a === 'string'){
+c = b;
+b = a;
+a = returnState;}
+
+this._tweenState(a, b, c);}, 
+
+
+_tweenState:function(stateRefFunc, stateName, config){
+
+
+var state=this._pendingState || this.state;
+var stateRef=stateRefFunc(state);
+
+
+var newConfig={
+easing:config.easing || DEFAULT_EASING, 
+duration:config.duration == null?DEFAULT_DURATION:config.duration, 
+delay:config.delay == null?DEFAULT_DELAY:config.delay, 
+beginValue:config.beginValue == null?stateRef[stateName]:config.beginValue, 
+endValue:config.endValue, 
+onEnd:config.onEnd, 
+stackBehavior:config.stackBehavior || DEFAULT_STACK_BEHAVIOR};
+
+
+var newTweenQueue=state.tweenQueue;
+if(newConfig.stackBehavior === tweenState.stackBehavior.DESTRUCTIVE){
+newTweenQueue = state.tweenQueue.filter(function(item){
+return item.stateName !== stateName || item.stateRefFunc(state) !== stateRef;});}
+
+
+
+newTweenQueue.push({
+stateRefFunc:stateRefFunc, 
+stateName:stateName, 
+config:newConfig, 
+initTime:Date.now() + newConfig.delay});
+
+
+
+
+stateRef[stateName] = newConfig.endValue;
+
+this.setState({tweenQueue:newTweenQueue});
+
+if(newTweenQueue.length === 1){
+this.startRaf();}}, 
+
+
+
+getTweeningValue:function(a, b){
+
+if(typeof a === 'string'){
+b = a;
+a = returnState;}
+
+return this._getTweeningValue(a, b);}, 
+
+
+_getTweeningValue:function(stateRefFunc, stateName){
+var state=this.state;
+var stateRef=stateRefFunc(state);
+var tweeningValue=stateRef[stateName];
+var now=Date.now();
+
+for(var i=0; i < state.tweenQueue.length; i++) {
+var item=state.tweenQueue[i];
+var itemStateRef=item.stateRefFunc(state);
+if(item.stateName !== stateName || itemStateRef !== stateRef){
+continue;}
+
+
+var progressTime=now - item.initTime > item.config.duration?
+item.config.duration:
+Math.max(0, now - item.initTime);
+
+
+
+var contrib=-item.config.endValue + item.config.easing(
+progressTime, 
+item.config.beginValue, 
+item.config.endValue, 
+item.config.duration);
+
+
+tweeningValue += contrib;}
+
+
+return tweeningValue;}, 
+
+
+_rafCb:function(){
+var state=this.state;
+if(state.tweenQueue.length === 0){
+return;}
+
+
+var now=Date.now();
+var newTweenQueue=[];
+
+for(var i=0; i < state.tweenQueue.length; i++) {
+var item=state.tweenQueue[i];
+if(now - item.initTime < item.config.duration){
+newTweenQueue.push(item);}else 
+{
+item.config.onEnd && item.config.onEnd();}}
+
+
+
+
+if(!this.isMounted()){
+return;}
+
+
+this.setState({
+tweenQueue:newTweenQueue});
+
+
+requestAnimationFrame(this._rafCb);}, 
+
+
+startRaf:function(){
+requestAnimationFrame(this._rafCb);}};
+
+
+
+
+module.exports = tweenState;
+});
+__d('tween-functions/index.js',[],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+
+var tweenFunctions={
+linear:function(t, b, _c, d){
+var c=_c - b;
+return c * t / d + b;}, 
+
+easeInQuad:function(t, b, _c, d){
+var c=_c - b;
+return c * (t /= d) * t + b;}, 
+
+easeOutQuad:function(t, b, _c, d){
+var c=_c - b;
+return -c * (t /= d) * (t - 2) + b;}, 
+
+easeInOutQuad:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d / 2) < 1){
+return c / 2 * t * t + b;}else 
+{
+return -c / 2 * (--t * (t - 2) - 1) + b;}}, 
+
+
+easeInCubic:function(t, b, _c, d){
+var c=_c - b;
+return c * (t /= d) * t * t + b;}, 
+
+easeOutCubic:function(t, b, _c, d){
+var c=_c - b;
+return c * ((t = t / d - 1) * t * t + 1) + b;}, 
+
+easeInOutCubic:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d / 2) < 1){
+return c / 2 * t * t * t + b;}else 
+{
+return c / 2 * ((t -= 2) * t * t + 2) + b;}}, 
+
+
+easeInQuart:function(t, b, _c, d){
+var c=_c - b;
+return c * (t /= d) * t * t * t + b;}, 
+
+easeOutQuart:function(t, b, _c, d){
+var c=_c - b;
+return -c * ((t = t / d - 1) * t * t * t - 1) + b;}, 
+
+easeInOutQuart:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d / 2) < 1){
+return c / 2 * t * t * t * t + b;}else 
+{
+return -c / 2 * ((t -= 2) * t * t * t - 2) + b;}}, 
+
+
+easeInQuint:function(t, b, _c, d){
+var c=_c - b;
+return c * (t /= d) * t * t * t * t + b;}, 
+
+easeOutQuint:function(t, b, _c, d){
+var c=_c - b;
+return c * ((t = t / d - 1) * t * t * t * t + 1) + b;}, 
+
+easeInOutQuint:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d / 2) < 1){
+return c / 2 * t * t * t * t * t + b;}else 
+{
+return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;}}, 
+
+
+easeInSine:function(t, b, _c, d){
+var c=_c - b;
+return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;}, 
+
+easeOutSine:function(t, b, _c, d){
+var c=_c - b;
+return c * Math.sin(t / d * (Math.PI / 2)) + b;}, 
+
+easeInOutSine:function(t, b, _c, d){
+var c=_c - b;
+return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;}, 
+
+easeInExpo:function(t, b, _c, d){
+var c=_c - b;
+var _ref;
+return (_ref = t === 0) !== null?_ref:{
+b:c * Math.pow(2, 10 * (t / d - 1)) + b};}, 
+
+
+easeOutExpo:function(t, b, _c, d){
+var c=_c - b;
+var _ref;
+return (_ref = t === d) !== null?_ref:b + {
+c:c * (-Math.pow(2, -10 * t / d) + 1) + b};}, 
+
+
+easeInOutExpo:function(t, b, _c, d){
+var c=_c - b;
+if(t === 0){
+b;}
+
+if(t === d){
+b + c;}
+
+if((t /= d / 2) < 1){
+return c / 2 * Math.pow(2, 10 * (t - 1)) + b;}else 
+{
+return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;}}, 
+
+
+easeInCirc:function(t, b, _c, d){
+var c=_c - b;
+return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;}, 
+
+easeOutCirc:function(t, b, _c, d){
+var c=_c - b;
+return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;}, 
+
+easeInOutCirc:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d / 2) < 1){
+return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;}else 
+{
+return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;}}, 
+
+
+easeInElastic:function(t, b, _c, d){
+var c=_c - b;
+var a, p, s;
+s = 1.70158;
+p = 0;
+a = c;
+if(t === 0){
+b;}else 
+if((t /= d) === 1){
+b + c;}
+
+if(!p){
+p = d * 0.3;}
+
+if(a < Math.abs(c)){
+a = c;
+s = p / 4;}else 
+{
+s = p / (2 * Math.PI) * Math.asin(c / a);}
+
+return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;}, 
+
+easeOutElastic:function(t, b, _c, d){
+var c=_c - b;
+var a, p, s;
+s = 1.70158;
+p = 0;
+a = c;
+if(t === 0){
+b;}else 
+if((t /= d) === 1){
+b + c;}
+
+if(!p){
+p = d * 0.3;}
+
+if(a < Math.abs(c)){
+a = c;
+s = p / 4;}else 
+{
+s = p / (2 * Math.PI) * Math.asin(c / a);}
+
+return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;}, 
+
+easeInOutElastic:function(t, b, _c, d){
+var c=_c - b;
+var a, p, s;
+s = 1.70158;
+p = 0;
+a = c;
+if(t === 0){
+b;}else 
+if((t /= d / 2) === 2){
+b + c;}
+
+if(!p){
+p = d * (0.3 * 1.5);}
+
+if(a < Math.abs(c)){
+a = c;
+s = p / 4;}else 
+{
+s = p / (2 * Math.PI) * Math.asin(c / a);}
+
+if(t < 1){
+return -0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;}else 
+{
+return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * 0.5 + c + b;}}, 
+
+
+easeInBack:function(t, b, _c, d, s){
+var c=_c - b;
+if(s === void 0){
+s = 1.70158;}
+
+return c * (t /= d) * t * ((s + 1) * t - s) + b;}, 
+
+easeOutBack:function(t, b, _c, d, s){
+var c=_c - b;
+if(s === void 0){
+s = 1.70158;}
+
+return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;}, 
+
+easeInOutBack:function(t, b, _c, d, s){
+var c=_c - b;
+if(s === void 0){
+s = 1.70158;}
+
+if((t /= d / 2) < 1){
+return c / 2 * (t * t * (((s *= 1.525) + 1) * t - s)) + b;}else 
+{
+return c / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;}}, 
+
+
+easeInBounce:function(t, b, _c, d){
+var c=_c - b;
+var v;
+v = tweenFunctions.easeOutBounce(d - t, 0, c, d);
+return c - v + b;}, 
+
+easeOutBounce:function(t, b, _c, d){
+var c=_c - b;
+if((t /= d) < 1 / 2.75){
+return c * (7.5625 * t * t) + b;}else 
+if(t < 2 / 2.75){
+return c * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75) + b;}else 
+if(t < 2.5 / 2.75){
+return c * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375) + b;}else 
+{
+return c * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375) + b;}}, 
+
+
+easeInOutBounce:function(t, b, _c, d){
+var c=_c - b;
+var v;
+if(t < d / 2){
+v = tweenFunctions.easeInBounce(t * 2, 0, c, d);
+return v * 0.5 + b;}else 
+{
+v = tweenFunctions.easeOutBounce(t * 2 - d, 0, c, d);
+return v * 0.5 + c * 0.5 + b;}}};
+
+
+
+
+module.exports = tweenFunctions;
+});
+__d('react-native-modal/Style.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+var StyleSheet=require('react-native/Libraries/react-native/react-native.js').StyleSheet;
+
+module.exports = StyleSheet.create({
+container:{
+position:'absolute', 
+top:0, 
+bottom:0, 
+left:0, 
+right:0, 
+backgroundColor:'transparent', 
+justifyContent:'center'}, 
+
+backdrop:{
+position:'absolute', 
+top:0, 
+bottom:0, 
+left:0, 
+right:0, 
+backgroundColor:'#000000', 
+opacity:0.5}, 
+
+closeButton:{
+position:'absolute', 
+borderColor:'#ffffff', 
+borderRadius:2, 
+borderWidth:1, 
+right:20, 
+top:20, 
+paddingLeft:10, 
+paddingRight:10, 
+paddingTop:5, 
+paddingBottom:5}, 
+
+closeButtonText:{
+color:'#ffffff'}, 
+
+modal:{
+margin:20, 
+backgroundColor:'#ffffff', 
+borderRadius:3, 
+padding:20}});
+});
+__d('Overlay',["react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+
+
+
+
+
+
+var React=require('react-native/Libraries/react-native/react-native.js');var 
+
+View=
+
+
+
+React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var requireNativeComponent=React.requireNativeComponent;
+
+
+
+
+
+var Overlay=React.createClass({displayName:'Overlay', 
+propTypes:{
+
+
+
+
+aboveStatusBar:React.PropTypes.bool, 
+
+
+
+
+
+isVisible:React.PropTypes.bool}, 
+
+
+getDefaultProps:function(){
+return {
+aboveStatusBar:false, 
+isVisible:false};}, 
+
+
+
+render:function(){var 
+
+isVisible=
+this.props.isVisible;
+
+if(this.props.isVisible){
+return (
+React.createElement(RNOverlay, {isVisible:true, style:styles.container, pointerEvents:'none', aboveStatusBar:this.props.aboveStatusBar}, 
+React.Children.map(this.props.children, React.addons.cloneWithProps)));}else 
+
+
+{
+return React.createElement(View, null);}}});
+
+
+
+
+var RNOverlay=requireNativeComponent('RNOverlay', Overlay);
+
+var styles=StyleSheet.create({
+container:{
+position:'absolute', 
+top:0, 
+bottom:0, 
+left:0, 
+right:0, 
+borderWidth:0, 
+backgroundColor:'transparent'}});
+
+
+
+module.exports = Overlay;
+});
+__d('react-native-blur/index.js',["react-native-blur/src/BlurView.js","react-native-blur/src/VibrancyView.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  const BlurView=require('react-native-blur/src/BlurView.js');
+const VibrancyView=require('react-native-blur/src/VibrancyView.js');
+
+module.exports = {
+BlurView:BlurView, 
+VibrancyView:VibrancyView};
+});
+__d('react-native-blur/src/BlurView.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target, props){for(var i=0; i < props.length; i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function(Constructor, protoProps, staticProps){if(protoProps)defineProperties(Constructor.prototype, protoProps);if(staticProps)defineProperties(Constructor, staticProps);return Constructor;};})();var _get=function get(object, property, receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object, property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent, property, receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance, Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass, superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, {constructor:{value:subClass, enumerable:false, writable:true, configurable:true}});if(superClass)subClass.__proto__ = superClass;}const React=require('react-native/Libraries/react-native/react-native.js');const 
+
+requireNativeComponent=
+
+React.requireNativeComponent;const Component=React.Component;var 
+
+BlurView=(function(_Component){function BlurView(){_classCallCheck(this, BlurView);_get(Object.getPrototypeOf(BlurView.prototype), 'constructor', this).apply(this, arguments);}_inherits(BlurView, _Component);_createClass(BlurView, [{key:'render', value:
+function render(){
+return React.createElement(NativeBlurView, this.props);}}]);return BlurView;})(Component);
+
+
+
+BlurView.propTypes = {
+blurType:React.PropTypes.string};
+
+
+const NativeBlurView=requireNativeComponent('BlurView', BlurView);
+
+module.exports = BlurView;
+});
+__d('react-native-blur/src/VibrancyView.js',["react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target, props){for(var i=0; i < props.length; i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function(Constructor, protoProps, staticProps){if(protoProps)defineProperties(Constructor.prototype, protoProps);if(staticProps)defineProperties(Constructor, staticProps);return Constructor;};})();var _get=function get(object, property, receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object, property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent, property, receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance, Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass, superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, {constructor:{value:subClass, enumerable:false, writable:true, configurable:true}});if(superClass)subClass.__proto__ = superClass;}const React=require('react-native/Libraries/react-native/react-native.js');const 
+
+requireNativeComponent=
+
+React.requireNativeComponent;const Component=React.Component;var 
+
+VibrancyView=(function(_Component){function VibrancyView(){_classCallCheck(this, VibrancyView);_get(Object.getPrototypeOf(VibrancyView.prototype), 'constructor', this).apply(this, arguments);}_inherits(VibrancyView, _Component);_createClass(VibrancyView, [{key:'render', value:
+function render(){
+return React.createElement(NativeVibrancyView, this.props);}}]);return VibrancyView;})(Component);
+
+
+
+VibrancyView.propTypes = {
+blurType:React.PropTypes.string};
+
+
+const NativeVibrancyView=requireNativeComponent('VibrancyView', VibrancyView);
+
+module.exports = VibrancyView;
 });
 __d('bluebird/js/browser/bluebird.js',[],function(global, require, requireDynamic, requireLazy, module, exports) {  !
 

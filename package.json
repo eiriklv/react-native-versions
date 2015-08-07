@@ -1,8 +1,8 @@
 {
-  "name": "react-native-updater",
+  "name": "react-native-versions",
   "version": "0.0.1",
-  "description": "Update and manage your React Native application versions",
-  "main": "lib/index.js",
+  "description": "Update and manage your React Native javascript bundle versions",
+  "main": "VersionManager.ios.js",
   "scripts": {
     "build": "rm -rf ./lib && babel src/ -d lib/",
     "pre-publish": "npm run build"

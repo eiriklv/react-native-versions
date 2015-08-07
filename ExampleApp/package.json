@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "bluebird": "^2.9.30",
-    "react-native": "0.9.0-rc",
-    "react-native-updater": "../"
+    "react-native": "facebook/react-native",
+    "react-native-modal": "^0.3.8",
+    "react-native-versions": "../"
   }
 }

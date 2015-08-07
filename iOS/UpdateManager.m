@@ -1,7 +1,6 @@
 #import "UpdateManager.h"
 #import "UpdateDownloader.h"
 
-
 @implementation UpdateManager
 
 static NSString *kCurrentJSVersion = @"ReployCurrentJsVersion";

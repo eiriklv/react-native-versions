@@ -5,13 +5,12 @@
 static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
-static NSString *VERSION_LIST = @"http://reploy.io/apps/%@/%@/js_versions";
-static NSString *LATEST_VERSION = @"http://reploy.io/apps/%@/%@/js_versions/latest";
+static NSString *LATEST_VERSION = @"http://localhost:9393/apps/%@/%@/js_versions/latest?apiId=%@&apiSecret=%@";
 static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/apps/%@/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (UpdateDownloader *)sharedInstance {
-  
+
   static UpdateDownloader *sharedDownloader = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -22,7 +21,7 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (instancetype)init {
-  
+
   if (self = [super init]) {
     self.binaryVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
   }
@@ -30,14 +29,16 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (void)configure:(NSDictionary*)config {
-  
-  self.token = [config objectForKey:@"token"];
+
   self.appId = [config objectForKey:@"appId"];
+  self.apiId = [config objectForKey:@"apiId"];
+  self.apiSecret = [config objectForKey:@"apiSecret"];
+
 }
 
 - (void)discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
-  
-  NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.binaryVersion];
+
+  NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.binaryVersion, self.apiId, self.apiSecret];
   [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
     NSError *error;
     NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -46,7 +47,7 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (void)downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion {
-  
+
   NSString *versionFile = [version stringByAppendingPathExtension:@"js"];
   NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, self.appId, version];
 
@@ -61,7 +62,7 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (void)downloadFileAtURL:(NSString *)urlPath ToPath:(NSString *)path Completion:(void (^)(NSError *err))completion {
-  
+
   [self downloadURLContents:urlPath Completion:^(NSError *err, NSData *data) {
     if (err != nil) {
       return completion(err);
@@ -81,7 +82,7 @@ static NSString *LOCAL_DIR = @"versions";
 }
 
 - (void)downloadURLContents:(NSString*)urlPath Completion:(void (^)(NSError *err, NSData *data))completion {
-  
+
   NSURL *url = [NSURL URLWithString:urlPath];
   NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
   NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
@@ -96,7 +97,7 @@ static NSString *LOCAL_DIR = @"versions";
 #pragma mark - NSURLSessionDelegate
 
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler{
-  
+
   if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
     if([challenge.protectionSpace.host isEqualToString:@"api.staging.rnplay.org"]){
       NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
@@ -110,13 +111,13 @@ static NSString *LOCAL_DIR = @"versions";
 #pragma mark - Helper methods
 
 - (NSDictionary *)getValueFromUserDefaultsForKey:(NSString*)key {
-  
+
   NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
   return [defaults objectForKey:key];
 }
 
 - (void)setUserDefaultsValueForKey:(NSString*)key value:(NSString *)value {
-  
+
   NSMutableDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
   [[defaults objectForKey:key] setObject:value forKey:key];
   [[NSUserDefaults standardUserDefaults] setObject:defaults forKey:kUpdaterData];

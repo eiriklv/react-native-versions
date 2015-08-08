@@ -53,7 +53,11 @@ var Versions = React.createClass({
 
   componentDidMount() {
 
-    VersionManager.configureUpdater({appId: this.props.appId});
+    VersionManager.configure({
+      appId: this.props.appId,
+      apiId: this.props.apiId,
+      apiSecret: this.props.apiSecret
+    });
 
     VersionManager.getCurrentJsVersion()
     .catch((err) => {

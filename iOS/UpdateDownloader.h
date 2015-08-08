@@ -2,8 +2,11 @@
 
 @interface UpdateDownloader : NSObject <NSURLSessionDelegate>
 
-@property (strong, nonatomic) NSString *token;
+
 @property (strong, nonatomic) NSString *appId;
+@property (strong, nonatomic) NSString *apiId;
+@property (strong, nonatomic) NSString *apiSecret;
+
 @property (strong, nonatomic) NSString *binaryVersion;
 @property (strong, nonatomic) NSString *currentJSVersion;
 

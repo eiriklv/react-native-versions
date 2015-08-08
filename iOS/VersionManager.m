@@ -28,7 +28,7 @@ NSString *const VersionDirectory = @"versions";
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(configureUpdater:(NSDictionary*)config) {
+RCT_EXPORT_METHOD(configure:(NSDictionary*)config) {
   UpdateDownloader *downloader = [UpdateDownloader sharedInstance];
   [downloader configure:config];
 }
@@ -60,7 +60,7 @@ RCT_EXPORT_METHOD(discoverLatestVersionAsync:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(getCurrentJsVersion:(RCTPromiseResolveBlock)resolve
                              rejecter:(RCTPromiseRejectBlock)reject) {
-  
+
   NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentJSVersion];
   resolve(version);
 }
@@ -68,7 +68,7 @@ RCT_EXPORT_METHOD(getCurrentJsVersion:(RCTPromiseResolveBlock)resolve
 RCT_EXPORT_METHOD(setCurrentJsVersion:(NSString *)version
                              resolver:(RCTPromiseResolveBlock)resolve
                              rejecter:(RCTPromiseRejectBlock)reject) {
-  
+
   [[NSUserDefaults standardUserDefaults] setValue:version forKey:kCurrentJSVersion];
   resolve([[NSUserDefaults standardUserDefaults] objectForKey:kCurrentJSVersion]);
 }

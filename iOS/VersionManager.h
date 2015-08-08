@@ -7,6 +7,6 @@ extern NSString *const VersionDirectory;
 
 @interface VersionManager : NSObject <RCTBridgeModule>
 
-+ (NSString *) pathForCurrentVersion;
++ (NSString *)pathForCurrentVersion;
 
 @end

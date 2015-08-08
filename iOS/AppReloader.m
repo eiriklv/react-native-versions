@@ -14,8 +14,8 @@
 
 RCT_EXPORT_MODULE()
 
--(dispatch_queue_t)methodQueue
-{
+- (dispatch_queue_t)methodQueue {
+  
   return dispatch_get_main_queue();
 }
 
@@ -23,8 +23,8 @@ RCT_EXPORT_MODULE()
  *  var AppReloader = require('NativeModules').AppReloader;
  *  AppReloader.reloadAppWithURLString('https://example.com/index.ios.bundle', 'App')
  */
-RCT_EXPORT_METHOD(reloadAppWithURLString:(NSString *)URLString moduleNamed:(NSString *)moduleName)
-{
+RCT_EXPORT_METHOD(reloadAppWithURLString:(NSString *)URLString moduleNamed:(NSString *)moduleName) {
+  
   AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSURL *JSBundleURL = [NSURL URLWithString:URLString];
 

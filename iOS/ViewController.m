@@ -12,6 +12,7 @@
 @implementation ViewController
 
 - (void)reloadWithJSBundleURL:(NSURL *)JSBundleURL moduleNamed:(NSString *)moduleName {
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:JSBundleURL
                                                       moduleName:moduleName
                                                    launchOptions:nil];
@@ -25,6 +26,7 @@
 }
 
 - (UIActivityIndicatorView *)spinner {
+  
   UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] init];
   [spinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
   [spinner setColor:[UIColor colorWithRed:113.0f/255.0f green:47.0f/255.0f blue:169.0f/255.0f alpha:1.0f]];

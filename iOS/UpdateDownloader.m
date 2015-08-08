@@ -5,7 +5,7 @@
 static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
-static NSString *LATEST_VERSION = @"http://localhost:9393/apps/%@/%@/js_versions/latest?apiId=%@&apiSecret=%@";
+static NSString *LATEST_VERSION = @"http://reploy.io/apps/%@/%@/js_versions/latest?apiId=%@&apiSecret=%@";
 static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/apps/%@/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 

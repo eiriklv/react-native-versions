@@ -1,0 +1,6 @@
+target 'ReactNativeVersionsIOSTests' do
+    pod 'Specta'
+    pod 'Expecta'
+    pod 'OCMockito'
+end
+

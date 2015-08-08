@@ -1,5 +1,8 @@
-# react-native-updater
-Manages updates to React Native apps.
+Download, reload and manage React Native javascript bundle versions.
+
+With this module, you can update your React Native application instantly without passing through TestFlight or the App Store.
+
+Eventually it should support: A/B testing, rollback, feature flags, customer segments.
 
 # Setup
 

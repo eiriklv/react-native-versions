@@ -11,6 +11,8 @@
 		5584658E1B76C5AA00A48C67 /* libReactNativeVersionsIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558465821B76C5AA00A48C67 /* libReactNativeVersionsIOS.a */; };
 		5584659D1B76C65800A48C67 /* VersionCheckerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5584659C1B76C65800A48C67 /* VersionCheckerSpec.m */; };
 		558465A01B76C6D300A48C67 /* VersionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5584659F1B76C6D300A48C67 /* VersionChecker.m */; };
+		558465A51B76E35400A48C67 /* BadBundle.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 558465A41B76E35400A48C67 /* BadBundle.jsbundle */; };
+		558465A71B76EE7800A48C67 /* ValidBundle.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 558465A61B76EE7800A48C67 /* ValidBundle.jsbundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		5584659C1B76C65800A48C67 /* VersionCheckerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionCheckerSpec.m; sourceTree = "<group>"; };
 		5584659E1B76C6D300A48C67 /* VersionChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionChecker.h; sourceTree = SOURCE_ROOT; };
 		5584659F1B76C6D300A48C67 /* VersionChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionChecker.m; sourceTree = SOURCE_ROOT; };
+		558465A31B76DD6B00A48C67 /* VersionCheckerErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionCheckerErrors.h; sourceTree = SOURCE_ROOT; };
+		558465A41B76E35400A48C67 /* BadBundle.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BadBundle.jsbundle; sourceTree = "<group>"; };
+		558465A61B76EE7800A48C67 /* ValidBundle.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ValidBundle.jsbundle; sourceTree = "<group>"; };
 		93C1CED3643C3E9B810B6B04 /* libPods-ReactNativeVersionsIOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeVersionsIOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +97,7 @@
 			children = (
 				5584659E1B76C6D300A48C67 /* VersionChecker.h */,
 				5584659F1B76C6D300A48C67 /* VersionChecker.m */,
+				558465A31B76DD6B00A48C67 /* VersionCheckerErrors.h */,
 			);
 			path = ReactNativeVersionsIOS;
 			sourceTree = "<group>";
@@ -109,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				558465931B76C5AA00A48C67 /* Info.plist */,
+				558465A41B76E35400A48C67 /* BadBundle.jsbundle */,
+				558465A61B76EE7800A48C67 /* ValidBundle.jsbundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,6 +218,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558465A51B76E35400A48C67 /* BadBundle.jsbundle in Resources */,
+				558465A71B76EE7800A48C67 /* ValidBundle.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

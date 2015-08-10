@@ -5,8 +5,8 @@
 static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
-static NSString *LATEST_VERSION = @"http://reploy.io/apps/%@/%@/js_versions/latest?apiId=%@&apiSecret=%@";
-static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/apps/%@/%@/js_versions/%@";
+static NSString *LATEST_VERSION = @"http://reploy.io/apps/%@/js_versions/latest?apiId=%@&apiSecret=%@binaryVersion=%@";
+static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/apps/%@/js_versions/%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (UpdateDownloader *)sharedInstance {
@@ -38,7 +38,7 @@ static NSString *LOCAL_DIR = @"versions";
 
 - (void)discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
 
-  NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.binaryVersion, self.apiId, self.apiSecret];
+  NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.apiId, self.apiSecret, self.binaryVersion];
   [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
     NSError *error;
     NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];

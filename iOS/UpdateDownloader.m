@@ -5,8 +5,8 @@
 static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
-static NSString *LATEST_VERSION = @"http://reploy.io/api/v1/apps/%@/js_versions/latest?apiId=%@&apiSecret=%@&binaryVersion=%@";
-static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/api/v1/apps/%@/js_versions/%@?apiId=%@&apiSecret=%@";
+static NSString *LATEST_VERSION = @"https://reploy.io/api/v1/apps/%@/js_versions/latest?apiId=%@&apiSecret=%@&binaryVersion=%@";
+static NSString *SINGLE_VERSION_PATH = @"https://reploy.io/api/v1/apps/%@/js_versions/%@?apiId=%@&apiSecret=%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (UpdateDownloader *)sharedInstance {

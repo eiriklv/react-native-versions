@@ -46,7 +46,6 @@ var Versions = React.createClass({
   updateToVersion(version) {
     VersionManager.downloadVersionAsync(version)
     .then((path) => {
-      console.log(path);
       VersionManager.loadJsVersion(version, path, this.props.moduleName);
     })
     .catch((err) => {

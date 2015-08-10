@@ -1,5 +1,6 @@
-// #define RCT_DEV 0
-// #define RCT_DEBUG 0
+//#define DEBUG 0
+//#define RCT_DEV 0
+//#define RCT_DEBUG 0
 
 #import "AppDelegate.h"
 #import "RCTRootView.h"
@@ -14,6 +15,7 @@ int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
   NSURL *jsCodeLocation;
 
@@ -26,7 +28,7 @@ int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
   #else
 
     // for releases
-
+  
     NSString *path = [VersionManager pathForCurrentVersion];
 
     if (path) {
@@ -47,6 +49,13 @@ int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+void uncaughtExceptionHandler(NSException *exception) {
+  
+  [VersionManager revertCurrentVersionToPrevious];
+  
+  // TODO: Log exceptions here...
 }
 
 @end

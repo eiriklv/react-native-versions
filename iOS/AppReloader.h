@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
 
-@interface AppReloader : NSObject <RCTBridgeModule>
+@interface AppReloader : NSObject
+
++ (void)reloadAppWithVersion:(NSString *)version
+                  bundlePath:(NSString *)bundlePath
+                 moduleNamed:(NSString *)moduleName;
+
 @end

@@ -1,8 +1,10 @@
 #import "UpdateDownloader.h"
 #import "VersionManager.h"
+#import "AppReloader.h"
 
 @implementation VersionManager
 
+NSString *const kPreviousJSVersion = @"previousJsVersion";
 NSString *const kCurrentJSVersion = @"currentJsVersion";
 NSString *const VersionDirectory = @"versions";
 
@@ -22,8 +24,33 @@ NSString *const VersionDirectory = @"versions";
   NSString *documentsPath = [paths objectAtIndex:0];
   NSString *localPath = [[documentsPath stringByAppendingPathComponent:VersionDirectory]
                                         stringByAppendingPathComponent:versionFile];
+  
+  // Here we need to remove the `previousJsVersion` so that some random exception won't revert the version.
+  // Should probably move this somewhere else, I don't really like having this here, but I also didn't want
+  // it in the user's AppDelegate.
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPreviousJSVersion];
 
   return localPath;
+}
+
++ (void)revertCurrentVersionToPrevious {
+  
+  NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+  NSString *previousJSVersion = [ud objectForKey:@"previousJsVersion"];
+  
+  // If the `previousJsVersion` doesn't exist, then this is not a crash when trying to update, don't
+  // reset the version back to the previous.
+  if (previousJSVersion) {
+    if ([previousJSVersion isEqualToString:@"FIRST_VERSION"]) {
+      // If the previous version was the very first version, `currentJsVersion` would have been `nil`
+      // so here we simply set it back to `nil`.
+      previousJSVersion = nil;
+    }
+    
+    [ud setValue:previousJSVersion forKey:@"currentJsVersion"];
+    [ud removeObjectForKey:@"previousJsVersion"];
+    [ud synchronize];
+  }
 }
 
 RCT_EXPORT_MODULE();
@@ -65,12 +92,45 @@ RCT_EXPORT_METHOD(getCurrentJsVersion:(RCTPromiseResolveBlock)resolve
   resolve(version);
 }
 
-RCT_EXPORT_METHOD(setCurrentJsVersion:(NSString *)version
-                             resolver:(RCTPromiseResolveBlock)resolve
-                             rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(loadJsVersion:(NSString *)version
+                     bundlePath:(NSString *)bundlePath
+                     moduleName:(NSString *)moduleName
+                       resolver:(RCTPromiseResolveBlock)resolve
+                       rejecter:(RCTPromiseRejectBlock)reject) {
+  
+  [self setPreviousVersion];
+  [self setCurrentVersion:version];
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [AppReloader reloadAppWithVersion:version bundlePath:bundlePath moduleNamed:moduleName];
+  });
+  
+  resolve(version);
+}
 
-  [[NSUserDefaults standardUserDefaults] setValue:version forKey:kCurrentJSVersion];
-  resolve([[NSUserDefaults standardUserDefaults] objectForKey:kCurrentJSVersion]);
+- (void)setPreviousVersion {
+  
+  NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+  NSString *currentJSVersion = [ud objectForKey:kCurrentJSVersion];
+  
+  // If the `currentJsVersion` is `nil`, it means we are at the very first version.
+  if (currentJSVersion == nil) {
+    currentJSVersion = @"FIRST_VERSION";
+  }
+  
+  // Here we set a `previousJsVersion` to the currentVersion. This will allow us to revert back in case the
+  // app that is getting loaded here has an exception.
+  [ud setValue:currentJSVersion forKey:kPreviousJSVersion];
+  [ud synchronize];
+}
+
+- (void)setCurrentVersion:(NSString *)version {
+  
+  // Here we are optimistically setting the `currentJsVersion` to the version of the latest update downloaded.
+  // If there aren't any problems, then it will stand.
+  NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+  [ud setValue:version forKey:kCurrentJSVersion];
+  [ud synchronize];
 }
 
 @end

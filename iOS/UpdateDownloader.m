@@ -6,7 +6,7 @@ static NSString *kUpdaterData = @"ReployUpdaterData";
 static NSString *kCurrentJSVersion = @"currentJsVersion";
 
 static NSString *LATEST_VERSION = @"http://reploy.io/api/v1/apps/%@/js_versions/latest?apiId=%@&apiSecret=%@&binaryVersion=%@";
-static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/api/v1/apps/%@/js_versions/%@";
+static NSString *SINGLE_VERSION_PATH = @"http://reploy.io/api/v1/apps/%@/js_versions/%@?apiId=%@&apiSecret=%@";
 static NSString *LOCAL_DIR = @"versions";
 
 + (UpdateDownloader *)sharedInstance {
@@ -33,7 +33,6 @@ static NSString *LOCAL_DIR = @"versions";
   self.appId = [config objectForKey:@"appId"];
   self.apiId = [config objectForKey:@"apiId"];
   self.apiSecret = [config objectForKey:@"apiSecret"];
-
 }
 
 - (void)discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
@@ -49,7 +48,7 @@ static NSString *LOCAL_DIR = @"versions";
 - (void)downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion {
 
   NSString *versionFile = [version stringByAppendingPathExtension:@"js"];
-  NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, self.appId, version];
+  NSString *remotePath = [NSString stringWithFormat:SINGLE_VERSION_PATH, self.appId, version, self.apiId, self.apiSecret];
 
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentsPath = [paths objectAtIndex:0];

@@ -33,13 +33,13 @@ var ExampleApp = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          React Native Update Sample App
+          React Native Update Sample App - 1
         </Text>
         <VersionManager
           appId="6TZeaZNOrFY"
           apiId="6cdf5c7b984c4ea4"
           apiSecret="Wee0ch1fRCL_po_OL1fQhxOLLVNpYCIjFzqn1z0UjgM"
-          active={true}
+          active={true/*__DEV__ ? false : true}*/}
           moduleName={moduleName} />
       </View>
     );

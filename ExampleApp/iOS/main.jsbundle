@@ -1429,10 +1429,15 @@ currentJsVersion:null};},
 render:function(){
 return (
 React.createElement(View, {style:styles.container}, 
-React.createElement(Text, {style:styles.welcome}, 'React Native Update Sample App'), 
+React.createElement(Text, {style:styles.welcome}, 'React Native Update Sample App - 1'), 
 
 
-React.createElement(VersionManager, {appId:'20ecc627-bef4-432c-8d65-0e7bd6090151', active:true, moduleName:moduleName})));}});
+React.createElement(VersionManager, {
+appId:'6TZeaZNOrFY', 
+apiId:'6cdf5c7b984c4ea4', 
+apiSecret:'Wee0ch1fRCL_po_OL1fQhxOLLVNpYCIjFzqn1z0UjgM', 
+active:true, 
+moduleName:moduleName})));}});
 
 
 
@@ -50582,7 +50587,7 @@ View=
 
 
 
-React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var _React$NativeModules=React.NativeModules;var VersionManager=_React$NativeModules.VersionManager;var AppReloader=_React$NativeModules.AppReloader;
+React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var VersionManager=React.NativeModules.VersionManager;
 
 var Modal=require('Modal');
 
@@ -50618,39 +50623,48 @@ modalVisible:false};},
 updateToVersion:function(version){var _this=this;
 VersionManager.downloadVersionAsync(version).
 then(function(path){
-VersionManager.setCurrentJsVersion(version);
-AppReloader.reloadAppWithURLString(path, _this.props.moduleName);});}, 
+console.log(path);
+VersionManager.loadJsVersion(version, path, _this.props.moduleName);}).
+
+catch(function(err){
+
+console.log(err);});}, 
 
 
 
 componentDidMount:function(){var _this2=this;
+if(this.props.active){
+VersionManager.configure({
+appId:this.props.appId, 
+apiId:this.props.apiId, 
+apiSecret:this.props.apiSecret});
 
-VersionManager.configureUpdater({appId:this.props.appId});
 
 VersionManager.getCurrentJsVersion().
-catch(function(err){
-console.log(err);}).
-
 then(function(currentVersion){
 VersionManager.discoverLatestVersionAsync().
-catch(function(err){
-
-console.log(err);}).
-
 then(function(latestVersionData){
 var latestVersion=latestVersionData.version_number;
 if(latestVersion == currentVersion){
 console.log('Already on the latest version!');}else 
 {
-console.log('modal');
-_this2.setState({modalVisible:true, version:latestVersion});}});});}, 
+console.log('New version detected...');
+_this2.setState({modalVisible:true, version:latestVersion});}}).
 
+
+catch(function(err){
+
+console.log(err);});}).
+
+
+catch(function(err){
+
+console.log(err);});}}, 
 
 
 
 
 render:function(){var _this3=this;
-if(this.props.active){
 return (
 React.createElement(Modal, {forceToFront:true, isVisible:this.state.modalVisible}, 
 React.createElement(Text, {style:styles.title}, 'Do you want to update to version ', this.state.version, '?'), 
@@ -50658,12 +50672,9 @@ React.createElement(TouchableOpacity, {onPress:function(){return _this3.closeMod
 React.createElement(Text, {style:styles.button}, 'Cancel')), 
 
 React.createElement(TouchableOpacity, {onPress:function(){return _this3.updateToVersion(_this3.state.version);}}, 
-React.createElement(Text, {style:styles.button}, 'Update now'))));}else 
+React.createElement(Text, {style:styles.button}, 'Update now'))));}});
 
 
-
-{
-return React.createElement(View, null);}}});
 
 
 

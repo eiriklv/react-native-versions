@@ -8,7 +8,7 @@ var {
   Text,
   TouchableOpacity,
   NativeModules: {
-    VersionManager, AppReloader
+    VersionManager
   }
 } = React;
 
@@ -46,53 +46,58 @@ var Versions = React.createClass({
   updateToVersion(version) {
     VersionManager.downloadVersionAsync(version)
     .then((path) => {
-      VersionManager.setCurrentJsVersion(version);
-      AppReloader.reloadAppWithURLString(path, this.props.moduleName);
+      VersionManager.loadJsVersion(version, path, this.props.moduleName);
     })
+    .catch((err) => {
+      // error downloading the latest version
+      console.log(err);
+    });
   },
 
   componentDidMount() {
+    if (this.props.active) {
+      VersionManager.configure({
+        appId: this.props.appId,
+        apiId: this.props.apiId,
+        apiSecret: this.props.apiSecret
+      });
 
-    VersionManager.configureUpdater({appId: this.props.appId});
-
-    VersionManager.getCurrentJsVersion()
-    .catch((err) => {
-      console.log(err);
-    })
-    .then((currentVersion) => {
-      VersionManager.discoverLatestVersionAsync()
-        .catch((err) => {
-          // error fetching the latest version
-          console.log(err);
-        })
+      VersionManager.getCurrentJsVersion()
+      .then((currentVersion) => {
+        VersionManager.discoverLatestVersionAsync()
         .then((latestVersionData) => {
           var latestVersion = latestVersionData.version_number;
           if (latestVersion == currentVersion) {
             console.log("Already on the latest version!");
           } else {
-            console.log('modal');
+            console.log("New version detected...");
             this.setState({modalVisible: true, version: latestVersion})
           }
+        })
+        .catch((err) => {
+          // error fetching the latest version
+          console.log(err);
         });
+      })
+      .catch((err) => {
+        // error getting current version
+        console.log(err);
       });
+    }
   },
 
   render() {
-    if (this.props.active) {
-      return (
-        <Modal forceToFront={true} isVisible={this.state.modalVisible}>
-          <Text style={styles.title}>Do you want to update to version {this.state.version}?</Text>
-          <TouchableOpacity onPress={() => this.closeModal()}>
-            <Text style={styles.button}>Cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.updateToVersion(this.state.version)}>
-            <Text style={styles.button}>Update now</Text>
-          </TouchableOpacity>
-        </Modal>
-      );
-    } else {
-      return <View />;
-    }
+    return (
+      <Modal forceToFront={true} isVisible={this.state.modalVisible}>
+        <Text style={styles.title}>Do you want to update to version {this.state.version}?</Text>
+        <TouchableOpacity onPress={() => this.closeModal()}>
+          <Text style={styles.button}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.updateToVersion(this.state.version)}>
+          <Text style={styles.button}>Update now</Text>
+        </TouchableOpacity>
+      </Modal>
+    );
   },
 });
 

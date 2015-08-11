@@ -38,9 +38,14 @@ static NSString *LOCAL_DIR = @"versions";
 - (void)discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
 
   NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.apiId, self.apiSecret, self.binaryVersion];
+  
   [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
     NSError *error;
     NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    if ([version objectForKey:@"errors"] != nil) {
+      error = [NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil];
+    }
     completion(error, version);
   }];
 }

@@ -1,50 +1,82 @@
 Manage javascript bundle versions over the wire from your React Native app.
 
-# Setup
+# Installation
 
-Clone the reploy-cli to manage javascript bundle versions.
-
-```
-git clone git@github.com:jsierles/reploy-cli.git
-```
-
-Open the ExampleApp and run - it should load the latest bundle from the remote API.
-
-Use the following command to push a new javascript bundle:
+When we have a final release, you can install straight from npm. For now, via this repository:
 
 ```
-~/reploy-cli/lib/reploy.js push
+npm install reploy/react-native-versions
 ```
 
-Reloading the app should download and load the new bundle.
+## The Example App
 
-# Updater API
+To get an idea how this works, check the ExampleApp. You should be able to open it and see it pull an update from the Reploy Versions API.
 
-Rails app hosted at reploy.io with no authentication. Just for testing! Apps are assigned a UUID. Binary versions are the App Store version. JS versions are the MD5 hash of the jsbundle.
+### Setup your AppDelegate
+
+We've left it up to you to load the new javascript version from the native side. Check ```ExampleApp/AppDelegate.m``` for an example. Here, the bundle is loaded into a new RCTRootView, which in turn gets loaded into a new rootViewController with a flip transition animation.
+
+### Setup your top level component to handle version updates
+
+We decided to put most of the version update logic in javascript, for flexibility on the UI side, and easier compatibility with Android. See ExampleApp/index.ios.js for default usage and VersionManager.ios.js to see the logic. The API should be pretty clear there.
+
+### Setup API credentials
+
+You'll need API credentials to use the free API at reploy.io. Or, implement your own based on the examples below.
+
+To use the hosted Reploy API, install the command line client.
+
+```
+npm install -g reploy
+```
+
+Then, signup for an account. Your personal API token will get installed in ~/.reploy.
+
+```
+reploy Setup
+```
+
+Finally, from within your React Native project, register your app. This will drop the app's own credentials in .reploy. These are the values you pass to VersionManager.
+
+```
+reploy create-app
+
+```
+
+### Release a javascript version
+
+Now the fun part! By default, reploy will run `react-native bundle`, then try to upload the resulting file in iOS/main.jsbundle.
+
+```
+reploy push
+```
+
+If you want to generate your own bundle, you can skip the bundle step.
+
+```
+reploy push -s
+
+``
+
+When your app starts up in *release mode*, it should prompt for an update!
+
+# The Reploy Versions API
 
 Create app
-```POST http://replay.io/apps.json```
+```POST /api/v1//apps```
 
 List apps
-```GET http://reploy.io/apps.json```
+```GET /api/v1/apps```
 
-List JS bundle versions for a binary release
-```GET http://reploy.io/apps/a3325f20-b08c-4d8a-b313-d964c5d23bdc/1.0/js_versions.json```
+Get info about the latest version
+```GET /api/v1/apps/:appId/js_versions/latest```
 
-Download JS bundle
-```GET http://reploy.io/apps/a3325f20-b08c-4d8a-b313-d964c5d23bdc/1.0/js_versions/1f3b5bb596cdd49345812b113809b2cf```
+Download JS bundle contents
+```GET /api/v1/apps/:appId/js_versions/:versionNumber```
 
 Create JS bundle version
-```POST http://replay.io/apps/a3325f20-b08c-4d8a-b313-d964c5d23bdc/1.0/js_versions```
+```POST /api/v1/apps/:appId/js_versions```
 
-See https://github.com/jsierles/reploy-web for the implementation.
+## Authentication
 
-# TODO
-
-* Error handling
-* native code to fall back to main.jsbundle when a remote bundle fails to load
-* Prompt user for input about updating
-
-# IDEAS
-
-* Use react-native-overlay to keep default updater UI on top
+Authenticate to the API using X-Secret and X-SecretId HTTP headers.

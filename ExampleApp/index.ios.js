@@ -22,13 +22,6 @@ Promise.onPossiblyUnhandledRejection((error) =>{
 var moduleName = "ExampleApp";
 
 var ExampleApp = React.createClass({
-
-  getInitialState() {
-    return {
-      currentJsVersion: null
-    }
-  },
-
   render: function() {
     return (
       <View style={styles.container}>

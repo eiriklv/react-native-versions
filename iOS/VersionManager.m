@@ -1,6 +1,5 @@
 #import "UpdateDownloader.h"
 #import "VersionManager.h"
-#import "AppReloader.h"
 
 @implementation VersionManager
 

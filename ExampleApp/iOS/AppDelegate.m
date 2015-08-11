@@ -5,13 +5,14 @@
 #import "AppDelegate.h"
 #import "RCTRootView.h"
 #import "VersionManager.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
+  
   NSURL *jsCodeLocation;
 
   #if RCT_DEV
@@ -37,6 +38,8 @@
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"ExampleApp"
                                                    launchOptions:launchOptions];
+  
+  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
@@ -44,6 +47,35 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+/**
+ * Override this method in order to load the new bundle as you please. This example
+ * shows the bundle being loaded into a new RCTRootView, which in turn gets loaded
+ * into a view controller that is set as the new rootViewController with a flip
+ * transition animation.
+ */
+- (void)reloadAppWithBundlePath:(NSString *)bundlePath moduleName:(NSString *)moduleName {
+  
+  NSURL *JSBundleURL = [NSURL URLWithString:bundlePath];
+  
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:JSBundleURL
+                                                      moduleName:moduleName
+                                                   launchOptions:nil];
+  
+  // The delegate needs to be set here since this is a new bridge.
+  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
+  
+  ViewController *viewController = [[ViewController alloc] init];
+  [viewController reloadWithRootView:rootView];
+  
+  [UIView transitionWithView:self.window
+                    duration:0.4f
+                     options:UIViewAnimationOptionTransitionFlipFromRight
+                  animations:^{
+                    self.window.rootViewController = viewController;
+                  }
+                  completion:NULL];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {

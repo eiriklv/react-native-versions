@@ -9,6 +9,7 @@ NSString *const kCurrentJSVersion = @"currentJsVersion";
 NSString *const VersionDirectory = @"versions";
 
 @synthesize bridge = _bridge;
+@synthesize delegate = _delegate;
 
 + (NSString *)pathForCurrentVersion {
 
@@ -101,9 +102,11 @@ RCT_EXPORT_METHOD(loadJsVersion:(NSString *)version
   [self setPreviousVersion];
   [self setCurrentVersion:version];
   
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [AppReloader reloadAppWithVersion:version bundlePath:bundlePath moduleNamed:moduleName];
-  });
+  if ([self.delegate respondsToSelector:@selector(reloadAppWithBundlePath:moduleName:)]) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.delegate reloadAppWithBundlePath:bundlePath moduleName:moduleName];
+    });
+  }
   
   resolve(version);
 }

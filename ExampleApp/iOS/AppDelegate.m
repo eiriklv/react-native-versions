@@ -5,13 +5,14 @@
 #import "AppDelegate.h"
 #import "RCTRootView.h"
 #import "VersionManager.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
+  
   NSURL *jsCodeLocation;
 
   #if RCT_DEV
@@ -37,6 +38,8 @@
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"ExampleApp"
                                                    launchOptions:launchOptions];
+  
+  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
@@ -44,6 +47,22 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
+}
+
+- (void)reloadAppWithBundlePath:(NSString *)bundlePath moduleName:(NSString *)moduleName {
+  
+  NSURL *JSBundleURL = [NSURL URLWithString:bundlePath];
+  
+  ViewController *appViewController = [[ViewController alloc] init];
+  [appViewController reloadWithJSBundleURL:JSBundleURL moduleNamed:moduleName];
+  
+  [UIView transitionWithView:self.window
+                    duration:0.4f
+                     options:UIViewAnimationOptionTransitionFlipFromRight
+                  animations:^{
+                    self.window.rootViewController = appViewController;
+                  }
+                  completion:NULL];
 }
 
 void uncaughtExceptionHandler(NSException *exception) {

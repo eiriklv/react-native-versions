@@ -1395,7 +1395,7 @@ throw new TypeError(
 
 var index=findIndex.call(this, predicate, context);
 return index === -1?undefined:this[index];}});}})();
-__d('ExampleApp/index.ios.js',["react-native/Libraries/react-native/react-native.js","ExampleApp/VersionManager.ios.js","bluebird/js/browser/bluebird.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+__d('ExampleApp/index.ios.js',["react-native/Libraries/react-native/react-native.js","react-native-versions/VersionManager.ios.js","bluebird/js/browser/bluebird.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React=require('react-native/Libraries/react-native/react-native.js');var 
 
@@ -1406,7 +1406,7 @@ AppRegistry=
 
 React.AppRegistry;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;var AlertIOS=React.AlertIOS;
 
-var VersionManager=require('ExampleApp/VersionManager.ios.js');
+var VersionManager=require('react-native-versions/VersionManager.ios.js');
 
 
 
@@ -50575,7 +50575,7 @@ Object.keys(componentOrElement));}
 
 module.exports = findDOMNode;
 });
-__d('ExampleApp/VersionManager.ios.js',["Modal","react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
+__d('react-native-versions/VersionManager.ios.js',["Modal","react-native/Libraries/react-native/react-native.js"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';
 
 var React=require('react-native/Libraries/react-native/react-native.js');var 
 
@@ -50587,7 +50587,8 @@ View=
 
 
 
-React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var VersionManager=React.NativeModules.VersionManager;
+
+React.View;var PropTypes=React.PropTypes;var StyleSheet=React.StyleSheet;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var AlertIOS=React.AlertIOS;var VersionManager=React.NativeModules.VersionManager;
 
 var Modal=require('Modal');
 
@@ -50623,7 +50624,6 @@ modalVisible:false};},
 updateToVersion:function(version){var _this=this;
 VersionManager.downloadVersionAsync(version).
 then(function(path){
-console.log(path);
 VersionManager.loadJsVersion(version, path, _this.props.moduleName);}).
 
 catch(function(err){
@@ -50649,7 +50649,8 @@ if(latestVersion == currentVersion){
 console.log('Already on the latest version!');}else 
 {
 console.log('New version detected...');
-_this2.setState({modalVisible:true, version:latestVersion});}}).
+_this2.setState({modalVisible:true, version:latestVersion});
+_this2.showAlert();}}).
 
 
 catch(function(err){
@@ -50664,7 +50665,7 @@ console.log(err);});}},
 
 
 
-render:function(){var _this3=this;
+renderModal:function(){var _this3=this;
 return (
 React.createElement(Modal, {forceToFront:true, isVisible:this.state.modalVisible}, 
 React.createElement(Text, {style:styles.title}, 'Do you want to update to version ', this.state.version, '?'), 
@@ -50672,10 +50673,25 @@ React.createElement(TouchableOpacity, {onPress:function(){return _this3.closeMod
 React.createElement(Text, {style:styles.button}, 'Cancel')), 
 
 React.createElement(TouchableOpacity, {onPress:function(){return _this3.updateToVersion(_this3.state.version);}}, 
-React.createElement(Text, {style:styles.button}, 'Update now'))));}});
+React.createElement(Text, {style:styles.button}, 'Update now'))));}, 
 
 
 
+
+
+showAlert:function(){var _this4=this;
+return AlertIOS.alert(
+'Update available', 
+'Version ' + this.state.version, 
+[
+{text:'Update', onPress:function(){return _this4.updateToVersion(_this4.state.version);}}, 
+{text:'Cancel', onPress:function(){return _this4.closeModal();}}]);}, 
+
+
+
+
+render:function(){
+return React.createElement(View, null);}});
 
 
 

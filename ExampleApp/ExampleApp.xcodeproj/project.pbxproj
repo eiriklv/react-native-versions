@@ -22,10 +22,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		427DB3921B7418F400129C95 /* VersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3831B7418F400129C95 /* VersionManager.m */; };
-		427DB3951B7418F400129C95 /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3861B7418F400129C95 /* UpdateDownloader.m */; };
-		427DB3961B7418F400129C95 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB3881B7418F400129C95 /* ViewController.m */; };
-		427DB3971B7418F400129C95 /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427DB38C1B7418F400129C95 /* BundleManager.m */; };
+		55F5EDAC1B7A80C100C8FFD4 /* libReactNativeVersionsIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F5EDA91B7A80AA00C8FFD4 /* libReactNativeVersionsIOS.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +90,20 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		55F5EDA81B7A80AA00C8FFD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55F5ED991B7A80AA00C8FFD4 /* ReactNativeVersionsIOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 558465821B76C5AA00A48C67;
+			remoteInfo = ReactNativeVersionsIOS;
+		};
+		55F5EDAA1B7A80AA00C8FFD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55F5ED991B7A80AA00C8FFD4 /* ReactNativeVersionsIOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5584658D1B76C5AA00A48C67;
+			remoteInfo = ReactNativeVersionsIOSTests;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -129,15 +140,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		427DB3821B7418F400129C95 /* VersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VersionManager.h; path = ../iOS/VersionManager.h; sourceTree = "<group>"; };
-		427DB3831B7418F400129C95 /* VersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VersionManager.m; path = ../iOS/VersionManager.m; sourceTree = "<group>"; };
-		427DB3861B7418F400129C95 /* UpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateDownloader.m; path = ../iOS/UpdateDownloader.m; sourceTree = "<group>"; };
-		427DB3871B7418F400129C95 /* UpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateDownloader.h; path = ../iOS/UpdateDownloader.h; sourceTree = "<group>"; };
-		427DB3881B7418F400129C95 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../iOS/ViewController.m; sourceTree = "<group>"; };
-		427DB3891B7418F400129C95 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../iOS/ViewController.h; sourceTree = "<group>"; };
-		427DB38B1B7418F400129C95 /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BundleManager.h; path = ../iOS/BundleManager.h; sourceTree = "<group>"; };
-		427DB38C1B7418F400129C95 /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BundleManager.m; path = ../iOS/BundleManager.m; sourceTree = "<group>"; };
-		55F5ED211B7A272B00C8FFD4 /* VersionManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VersionManagerDelegate.h; path = ../iOS/VersionManagerDelegate.h; sourceTree = "<group>"; };
+		55F5ED991B7A80AA00C8FFD4 /* ReactNativeVersionsIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeVersionsIOS.xcodeproj; path = "node_modules/react-native-versions/ReactNativeVersionsIOS/ReactNativeVersionsIOS.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F5EDAC1B7A80C100C8FFD4 /* libReactNativeVersionsIOS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -246,14 +250,6 @@
 		13B07FAE1A68108700A75B9A /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				427DB3821B7418F400129C95 /* VersionManager.h */,
-				427DB3831B7418F400129C95 /* VersionManager.m */,
-				427DB3871B7418F400129C95 /* UpdateDownloader.h */,
-				427DB3861B7418F400129C95 /* UpdateDownloader.m */,
-				427DB3891B7418F400129C95 /* ViewController.h */,
-				427DB3881B7418F400129C95 /* ViewController.m */,
-				427DB38B1B7418F400129C95 /* BundleManager.h */,
-				427DB38C1B7418F400129C95 /* BundleManager.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -261,7 +257,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				55F5ED211B7A272B00C8FFD4 /* VersionManagerDelegate.h */,
 			);
 			name = ExampleApp;
 			sourceTree = "<group>";
@@ -270,6 +265,15 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55F5ED9A1B7A80AA00C8FFD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55F5EDA91B7A80AA00C8FFD4 /* libReactNativeVersionsIOS.a */,
+				55F5EDAB1B7A80AA00C8FFD4 /* ReactNativeVersionsIOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +289,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				55F5ED991B7A80AA00C8FFD4 /* ReactNativeVersionsIOS.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -433,6 +438,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 55F5ED9A1B7A80AA00C8FFD4 /* Products */;
+					ProjectRef = 55F5ED991B7A80AA00C8FFD4 /* ReactNativeVersionsIOS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -499,6 +508,20 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		55F5EDA91B7A80AA00C8FFD4 /* libReactNativeVersionsIOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeVersionsIOS.a;
+			remoteRef = 55F5EDA81B7A80AA00C8FFD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55F5EDAB1B7A80AA00C8FFD4 /* ReactNativeVersionsIOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactNativeVersionsIOSTests.xctest;
+			remoteRef = 55F5EDAA1B7A80AA00C8FFD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -548,12 +571,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427DB3961B7418F400129C95 /* ViewController.m in Sources */,
-				427DB3921B7418F400129C95 /* VersionManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				427DB3951B7418F400129C95 /* UpdateDownloader.m in Sources */,
-				427DB3971B7418F400129C95 /* BundleManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +644,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native-versions/ReactNativeVersionsIOS/**",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -641,6 +661,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React/**",
+					"$(SRCROOT)/node_modules/react-native-versions/ReactNativeVersionsIOS/**",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

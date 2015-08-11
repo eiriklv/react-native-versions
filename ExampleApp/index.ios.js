@@ -9,7 +9,7 @@ var {
   AlertIOS
 } = React;
 
-var VersionManager = require('./VersionManager.ios');
+var VersionManager = require('react-native-versions');
 
 // make sure errors in promise chains are visible
 

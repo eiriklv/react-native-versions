@@ -8,11 +8,6 @@
 
 @implementation AppDelegate
 
-@synthesize shouldRotate;
-
-float const kFlipTransitionDuration = 0.4f;
-int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);

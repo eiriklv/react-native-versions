@@ -12,6 +12,9 @@
 
 @implementation AppReloader
 
+float const kFlipTransitionDuration = 0.4f;
+int const kFlipTransitionType = UIViewAnimationOptionTransitionFlipFromRight;
+
 /**
  *  var AppReloader = require('NativeModules').AppReloader;
  *  AppReloader.reloadAppWithURLString('https://example.com/index.ios.bundle', 'App')

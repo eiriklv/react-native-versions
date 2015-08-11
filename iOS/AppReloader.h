@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern float const kFlipTransitionDuration;
+extern int const kFlipTransitionType;
+
 @interface AppReloader : NSObject
 
 + (void)reloadAppWithVersion:(NSString *)version

@@ -9,12 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
-extern float const kFlipTransitionDuration;
-extern int const kFlipTransitionType;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic) bool shouldRotate;
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UIViewController *rootViewController;
 

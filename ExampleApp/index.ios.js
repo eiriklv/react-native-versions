@@ -36,9 +36,9 @@ var ExampleApp = React.createClass({
           React Native Update Sample App - 1
         </Text>
         <VersionManager
-          appId="6TZeaZNOrFY"
-          apiId="6cdf5c7b984c4ea4"
-          apiSecret="Wee0ch1fRCL_po_OL1fQhxOLLVNpYCIjFzqn1z0UjgM"
+          appId="d94bfbe9f1e87663b103"
+          apiId="d0036fe2162b9a81"
+          apiSecret="nVw5icQMfzO-CjVrnLcG51dj21GNYVN26b66RRWJGq4"
           active={true/*__DEV__ ? false : true*/}
           moduleName={moduleName} />
       </View>

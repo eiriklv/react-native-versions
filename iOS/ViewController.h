@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RCTRootView.h"
 
 @interface ViewController : UIViewController
 
-- (void)reloadWithJSBundleURL:(NSURL *)JSBundleURL moduleNamed:(NSString *)moduleName;
+- (void)reloadWithRootView:(RCTRootView *)rootView;
 
 @end

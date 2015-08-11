@@ -53,14 +53,20 @@
   
   NSURL *JSBundleURL = [NSURL URLWithString:bundlePath];
   
-  ViewController *appViewController = [[ViewController alloc] init];
-  [appViewController reloadWithJSBundleURL:JSBundleURL moduleNamed:moduleName];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:JSBundleURL
+                                                      moduleName:moduleName
+                                                   launchOptions:nil];
+  
+  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
+  
+  ViewController *viewController = [[ViewController alloc] init];
+  [viewController reloadWithRootView:rootView];
   
   [UIView transitionWithView:self.window
                     duration:0.4f
                      options:UIViewAnimationOptionTransitionFlipFromRight
                   animations:^{
-                    self.window.rootViewController = appViewController;
+                    self.window.rootViewController = viewController;
                   }
                   completion:NULL];
 }

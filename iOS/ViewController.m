@@ -7,15 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "RCTRootView.h"
 
 @implementation ViewController
 
-- (void)reloadWithJSBundleURL:(NSURL *)JSBundleURL moduleNamed:(NSString *)moduleName {
-  
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:JSBundleURL
-                                                      moduleName:moduleName
-                                                   launchOptions:nil];
+- (void)reloadWithRootView:(RCTRootView *)rootView {
 
   rootView.loadingView = [self spinner];
   rootView.loadingViewFadeDelay = 0.0;

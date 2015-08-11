@@ -7,6 +7,7 @@ var {
   StyleSheet,
   Text,
   TouchableOpacity,
+  AlertIOS,
   NativeModules: {
     VersionManager
   }
@@ -71,7 +72,8 @@ var Versions = React.createClass({
             console.log("Already on the latest version!");
           } else {
             console.log("New version detected...");
-            this.setState({modalVisible: true, version: latestVersion})
+            this.setState({modalVisible: true, version: latestVersion});
+            this.showAlert();
           }
         })
         .catch((err) => {
@@ -86,7 +88,7 @@ var Versions = React.createClass({
     }
   },
 
-  render() {
+  renderModal() {
     return (
       <Modal forceToFront={true} isVisible={this.state.modalVisible}>
         <Text style={styles.title}>Do you want to update to version {this.state.version}?</Text>
@@ -98,6 +100,21 @@ var Versions = React.createClass({
         </TouchableOpacity>
       </Modal>
     );
+  },
+
+  showAlert() {
+    return AlertIOS.alert(
+        'Update available',
+        'Version '+this.state.version,
+        [
+          {text: 'Update', onPress: () => this.updateToVersion(this.state.version)},
+          {text: 'Cancel', onPress: () => this.closeModal()},
+        ]
+      )
+  },
+
+  render() {
+    return <View />;
   },
 });
 

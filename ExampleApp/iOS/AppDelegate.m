@@ -49,6 +49,12 @@
   return YES;
 }
 
+/**
+ * Override this method in order to load the new bundle as you please. This example
+ * shows the bundle being loaded into a new RCTRootView, which in turn gets loaded
+ * into a view controller that is set as the new rootViewController with a flip
+ * transition animation.
+ */
 - (void)reloadAppWithBundlePath:(NSString *)bundlePath moduleName:(NSString *)moduleName {
   
   NSURL *JSBundleURL = [NSURL URLWithString:bundlePath];
@@ -57,6 +63,7 @@
                                                       moduleName:moduleName
                                                    launchOptions:nil];
   
+  // The delegate needs to be set here since this is a new bridge.
   [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
   
   ViewController *viewController = [[ViewController alloc] init];

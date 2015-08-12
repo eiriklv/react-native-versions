@@ -42,7 +42,7 @@ npm install -g reploy
 Then, signup for an account. Your personal API token will get installed in ~/.reploy.
 
 ```
-reploy Setup
+reploy setup
 ```
 
 Finally, from within your React Native project, register your app. This will drop the app's own credentials in .reploy. These are the values you pass to VersionManager.

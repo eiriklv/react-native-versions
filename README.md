@@ -4,9 +4,18 @@ Manage javascript bundle versions over the wire from your React Native app.
 
 When we have a final release, you can install straight from npm. For now, via this repository:
 
-```
-npm install reploy/react-native-versions
-```
+1. Run `npm install reploy/react-native-versions`
+
+2. Open your project in XCode, right click on `Libraries` and click `Add
+   Files to "Your Project Name"`.
+
+3. Select the `ReactNativeVersionIOS.xcodeproj` file in the `node_modules/react-native-versions/ReactNativeVersionIOS` folder and click `Add`
+
+4. In the Xcode Project Navigator find the `ReactNativeVersionIOS.xcodproj` and add the  `Products/libReactNativeVersionsIOS.a` to `Build Phases -> Link Binary With Libraries`.
+
+5. Add the `ReactNativeVersionsIOS` folder to your project target's "Header Search Paths"
+
+![add_to_project](https://i.imgur.com/b30WLPL.png)
 
 ## The Example App
 

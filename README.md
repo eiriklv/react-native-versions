@@ -2,9 +2,7 @@ Manage javascript bundle versions over the wire from your React Native app.
 
 # Installation
 
-When we have a final release, you can install straight from npm. For now, via this repository:
-
-1. Run `npm install reploy/react-native-versions`
+1. Run `npm install react-native-versions` inside your project.
 
 2. Open your project in XCode, right click on `Libraries` and click `Add
    Files to "Your Project Name"`.
@@ -36,7 +34,7 @@ You'll need API credentials to use the free API at reploy.io. Or, implement your
 To use the hosted Reploy API, install the command line client.
 
 ```
-npm install -g reploy
+npm install -g reploy-cli
 ```
 
 Then, signup for an account. Your personal API token will get installed in ~/.reploy.

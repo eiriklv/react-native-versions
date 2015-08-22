@@ -8,12 +8,11 @@ var {
   Text,
   TouchableOpacity,
   AlertIOS,
+  Modal,
   NativeModules: {
     VersionManager
   }
 } = React;
-
-var Modal = require('react-native-modal');
 
 var Versions = React.createClass({
   propTypes: {
@@ -90,7 +89,8 @@ var Versions = React.createClass({
 
   renderModal() {
     return (
-      <Modal forceToFront={true} isVisible={this.state.modalVisible}>
+      
+      <Modal animated={true} visible={this.state.modalVisible}>
         <Text style={styles.title}>Do you want to update to version {this.state.version}?</Text>
         <TouchableOpacity onPress={() => this.closeModal()}>
           <Text style={styles.button}>Cancel</Text>

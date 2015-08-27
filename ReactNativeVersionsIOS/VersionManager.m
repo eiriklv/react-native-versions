@@ -24,11 +24,6 @@ NSString *const VersionDirectory = @"versions";
   NSString *documentsPath = [paths objectAtIndex:0];
   NSString *localPath = [[documentsPath stringByAppendingPathComponent:VersionDirectory]
                                         stringByAppendingPathComponent:versionFile];
-  
-  // Here we need to remove the `previousJsVersion` so that some random exception won't revert the version.
-  // Should probably move this somewhere else, I don't really like having this here, but I also didn't want
-  // it in the user's AppDelegate.
-  [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPreviousJSVersion];
 
   return localPath;
 }
@@ -87,6 +82,11 @@ RCT_EXPORT_METHOD(discoverLatestVersionAsync:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(getCurrentJsVersion:(RCTPromiseResolveBlock)resolve
                              rejecter:(RCTPromiseRejectBlock)reject) {
+  
+  // Here we need to remove the `previousJsVersion` so that some random exception won't revert the version.
+  // Should probably move this somewhere else, I don't really like having this here, but I also didn't want
+  // it in the user's AppDelegate.
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPreviousJSVersion];
 
   NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentJSVersion];
   resolve(version);

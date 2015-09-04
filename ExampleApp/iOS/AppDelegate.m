@@ -37,6 +37,7 @@
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"ExampleApp"
+                                               initialProperties:nil
                                                    launchOptions:launchOptions];
   
   [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
@@ -61,6 +62,7 @@
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:JSBundleURL
                                                       moduleName:moduleName
+                                               initialProperties:nil
                                                    launchOptions:nil];
   
   // The delegate needs to be set here since this is a new bridge.

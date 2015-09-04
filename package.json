@@ -1,6 +1,6 @@
 {
   "name": "react-native-versions",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Update and manage your React Native javascript bundle versions",
   "main": "VersionManager.ios.js",
   "scripts": {

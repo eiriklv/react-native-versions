@@ -44,9 +44,10 @@ var Versions = React.createClass({
   },
 
   updateToVersion(version) {
-    VersionManager.downloadVersionAsync(version)
+    var versionString = version.toString()
+    VersionManager.downloadVersionAsync(versionString)
     .then((path) => {
-      VersionManager.loadJsVersion(version, path, this.props.moduleName);
+      VersionManager.loadJsVersion(versionString, path, this.props.moduleName);
     })
     .catch((err) => {
       // error downloading the latest version
@@ -70,7 +71,7 @@ var Versions = React.createClass({
           if (latestVersion == currentVersion) {
             console.log("Already on the latest version!");
           } else {
-            console.log("New version detected...");
+            console.log("New version detected: "+latestVersion);
             this.setState({modalVisible: true, version: latestVersion});
             this.showAlert();
           }
@@ -89,7 +90,7 @@ var Versions = React.createClass({
 
   renderModal() {
     return (
-      
+
       <Modal animated={true} visible={this.state.modalVisible}>
         <Text style={styles.title}>Do you want to update to version {this.state.version}?</Text>
         <TouchableOpacity onPress={() => this.closeModal()}>

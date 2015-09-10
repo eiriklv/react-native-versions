@@ -38,11 +38,11 @@ static NSString *LOCAL_DIR = @"versions";
 - (void)discoverLatestVersion:(void (^)(NSError *err, NSDictionary *version))completion {
 
   NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.apiId, self.apiSecret, self.binaryVersion];
-  
+
   [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
     NSError *error;
     NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    
+
     if ([version objectForKey:@"errors"] != nil) {
       error = [NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil];
     }
@@ -74,11 +74,14 @@ static NSString *LOCAL_DIR = @"versions";
 
     NSString *localPath = [path stringByDeletingLastPathComponent];
     NSFileManager *manager = [NSFileManager defaultManager];
-    [manager createDirectoryAtPath:localPath withIntermediateDirectories:YES attributes:nil error:nil];
+
+    NSError *createPathError;
+
+    [manager createDirectoryAtPath:localPath withIntermediateDirectories:YES attributes:nil error:&createPathError];
     BOOL success = [manager createFileAtPath:path contents:data attributes:nil];
 
     if (!success) {
-      return completion([NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil]);
+      return completion(createPathError);
     }
 
     completion(nil);

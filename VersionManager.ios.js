@@ -107,7 +107,7 @@ var Versions = React.createClass({
 
     return AlertIOS.alert(
         `New version available: ${this.state.version}`,
-        this.state.release_notes || "This version has no release notes.",
+        this.state.releaseNotes || "This version has no release notes.",
         [
           {text: 'Update', onPress: () => this.updateToVersion(this.state.version)},
           {text: 'Cancel', onPress: () => this.closeModal()},

@@ -4,7 +4,7 @@
 
 #import "AppDelegate.h"
 #import "RCTRootView.h"
-#import "VersionManager.h"
+#import "RNVVersionManager.h"
 #import "ViewController.h"
 
 @implementation AppDelegate
@@ -25,7 +25,7 @@
 
     // for releases
   
-    NSString *path = [VersionManager pathForCurrentVersion];
+    NSString *path = [RNVVersionManager pathForCurrentVersion];
 
     if (path) {
       jsCodeLocation = [NSURL URLWithString:path];
@@ -40,7 +40,7 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
   
-  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
+  [(RNVVersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
@@ -66,7 +66,7 @@
                                                    launchOptions:nil];
   
   // The delegate needs to be set here since this is a new bridge.
-  [(VersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
+  [(RNVVersionManager *)rootView.bridge.modules[@"VersionManager"] setDelegate:self];
   
   ViewController *viewController = [[ViewController alloc] init];
   [viewController reloadWithRootView:rootView];
@@ -82,7 +82,7 @@
 
 void uncaughtExceptionHandler(NSException *exception) {
   
-  [VersionManager revertCurrentVersionToPrevious];
+  [RNVVersionManager revertCurrentVersionToPrevious];
   
   // TODO: Log exceptions here...
 }

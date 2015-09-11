@@ -8,9 +8,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "VersionManagerDelegate.h"
+#import "RNVVersionManagerDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, VersionManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RNVVersionManagerDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UIViewController *rootViewController;

@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface UpdateDownloader : NSObject <NSURLSessionDelegate>
-
+@interface RNVUpdateDownloader : NSObject <NSURLSessionDelegate>
 
 @property (strong, nonatomic) NSString *appId;
 @property (strong, nonatomic) NSString *apiId;
@@ -10,7 +9,7 @@
 @property (strong, nonatomic) NSString *binaryVersion;
 @property (strong, nonatomic) NSString *currentJSVersion;
 
-+ (UpdateDownloader *)sharedInstance;
++ (RNVUpdateDownloader *)sharedInstance;
 - (void)configure:(NSDictionary*)config;
 - (void)downloadVersion:(NSString *)version Completion:(void (^)(NSError *err, NSString *path))completion;
 - (void)discoverLatestVersion: (void (^)(NSError *err, NSDictionary *version))completion;

@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		3689C24B2CB3B90376E734B4 /* libPods-ReactNativeVersionsIOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C1CED3643C3E9B810B6B04 /* libPods-ReactNativeVersionsIOSTests.a */; };
 		5584658E1B76C5AA00A48C67 /* libReactNativeVersionsIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 558465821B76C5AA00A48C67 /* libReactNativeVersionsIOS.a */; };
-		55F5ED8B1B7A7F7200C8FFD4 /* BundleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F5ED831B7A7F7200C8FFD4 /* BundleManager.m */; };
-		55F5ED8C1B7A7F7200C8FFD4 /* UpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F5ED851B7A7F7200C8FFD4 /* UpdateDownloader.m */; };
-		55F5ED8D1B7A7F7200C8FFD4 /* VersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F5ED871B7A7F7200C8FFD4 /* VersionManager.m */; };
+		55CA1DDA1BA35D3E00A69989 /* RNVConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CA1DD91BA35D3E00A69989 /* RNVConstants.m */; };
+		55F5ED8C1B7A7F7200C8FFD4 /* RNVUpdateDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F5ED851B7A7F7200C8FFD4 /* RNVUpdateDownloader.m */; };
+		55F5ED8D1B7A7F7200C8FFD4 /* RNVVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F5ED871B7A7F7200C8FFD4 /* RNVVersionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +42,13 @@
 		558465821B76C5AA00A48C67 /* libReactNativeVersionsIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReactNativeVersionsIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5584658D1B76C5AA00A48C67 /* ReactNativeVersionsIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeVersionsIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		558465931B76C5AA00A48C67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55F5ED821B7A7F7200C8FFD4 /* BundleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleManager.h; sourceTree = SOURCE_ROOT; };
-		55F5ED831B7A7F7200C8FFD4 /* BundleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleManager.m; sourceTree = SOURCE_ROOT; };
-		55F5ED841B7A7F7200C8FFD4 /* UpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateDownloader.h; sourceTree = SOURCE_ROOT; };
-		55F5ED851B7A7F7200C8FFD4 /* UpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateDownloader.m; sourceTree = SOURCE_ROOT; };
-		55F5ED861B7A7F7200C8FFD4 /* VersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionManager.h; sourceTree = SOURCE_ROOT; };
-		55F5ED871B7A7F7200C8FFD4 /* VersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionManager.m; sourceTree = SOURCE_ROOT; };
-		55F5ED881B7A7F7200C8FFD4 /* VersionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionManagerDelegate.h; sourceTree = SOURCE_ROOT; };
+		55CA1DD81BA35D3E00A69989 /* RNVConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNVConstants.h; sourceTree = SOURCE_ROOT; };
+		55CA1DD91BA35D3E00A69989 /* RNVConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNVConstants.m; sourceTree = SOURCE_ROOT; };
+		55F5ED841B7A7F7200C8FFD4 /* RNVUpdateDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNVUpdateDownloader.h; sourceTree = SOURCE_ROOT; };
+		55F5ED851B7A7F7200C8FFD4 /* RNVUpdateDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNVUpdateDownloader.m; sourceTree = SOURCE_ROOT; };
+		55F5ED861B7A7F7200C8FFD4 /* RNVVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNVVersionManager.h; sourceTree = SOURCE_ROOT; };
+		55F5ED871B7A7F7200C8FFD4 /* RNVVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNVVersionManager.m; sourceTree = SOURCE_ROOT; };
+		55F5ED881B7A7F7200C8FFD4 /* RNVVersionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNVVersionManagerDelegate.h; sourceTree = SOURCE_ROOT; };
 		93C1CED3643C3E9B810B6B04 /* libPods-ReactNativeVersionsIOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeVersionsIOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,13 +95,13 @@
 		558465841B76C5AA00A48C67 /* ReactNativeVersionsIOS */ = {
 			isa = PBXGroup;
 			children = (
-				55F5ED821B7A7F7200C8FFD4 /* BundleManager.h */,
-				55F5ED831B7A7F7200C8FFD4 /* BundleManager.m */,
-				55F5ED841B7A7F7200C8FFD4 /* UpdateDownloader.h */,
-				55F5ED851B7A7F7200C8FFD4 /* UpdateDownloader.m */,
-				55F5ED861B7A7F7200C8FFD4 /* VersionManager.h */,
-				55F5ED871B7A7F7200C8FFD4 /* VersionManager.m */,
-				55F5ED881B7A7F7200C8FFD4 /* VersionManagerDelegate.h */,
+				55CA1DD81BA35D3E00A69989 /* RNVConstants.h */,
+				55CA1DD91BA35D3E00A69989 /* RNVConstants.m */,
+				55F5ED841B7A7F7200C8FFD4 /* RNVUpdateDownloader.h */,
+				55F5ED851B7A7F7200C8FFD4 /* RNVUpdateDownloader.m */,
+				55F5ED861B7A7F7200C8FFD4 /* RNVVersionManager.h */,
+				55F5ED871B7A7F7200C8FFD4 /* RNVVersionManager.m */,
+				55F5ED881B7A7F7200C8FFD4 /* RNVVersionManagerDelegate.h */,
 			);
 			path = ReactNativeVersionsIOS;
 			sourceTree = "<group>";
@@ -262,9 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55F5ED8D1B7A7F7200C8FFD4 /* VersionManager.m in Sources */,
-				55F5ED8B1B7A7F7200C8FFD4 /* BundleManager.m in Sources */,
-				55F5ED8C1B7A7F7200C8FFD4 /* UpdateDownloader.m in Sources */,
+				55F5ED8D1B7A7F7200C8FFD4 /* RNVVersionManager.m in Sources */,
+				55F5ED8C1B7A7F7200C8FFD4 /* RNVUpdateDownloader.m in Sources */,
+				55CA1DDA1BA35D3E00A69989 /* RNVConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

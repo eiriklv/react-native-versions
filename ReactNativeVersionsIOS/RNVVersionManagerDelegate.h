@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Facebook. All rights reserved.
 //
 
-@class VersionManager;
+@class RNVVersionManager;
 
-@protocol VersionManagerDelegate <NSObject>
+@protocol RNVVersionManagerDelegate <NSObject>
 @optional
 
 - (void)reloadAppWithBundlePath:(NSString *)bundlePath moduleName:(NSString *)moduleName;

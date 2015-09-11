@@ -1,17 +1,15 @@
-#import "UpdateDownloader.h"
+#import "RNVUpdateDownloader.h"
+#import "RNVConstants.h"
 
-@implementation UpdateDownloader
-
-static NSString *kUpdaterData = @"ReployUpdaterData";
-static NSString *kCurrentJSVersion = @"currentJsVersion";
+@implementation RNVUpdateDownloader
 
 static NSString *LATEST_VERSION = @"https://reploy.io/api/v1/apps/%@/js_versions/latest?apiId=%@&apiSecret=%@&binaryVersion=%@";
 static NSString *SINGLE_VERSION_PATH = @"https://reploy.io/api/v1/apps/%@/js_versions/%@?apiId=%@&apiSecret=%@";
 static NSString *LOCAL_DIR = @"versions";
 
-+ (UpdateDownloader *)sharedInstance {
++ (RNVUpdateDownloader *)sharedInstance {
 
-  static UpdateDownloader *sharedDownloader = nil;
+  static RNVUpdateDownloader *sharedDownloader = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     sharedDownloader = [[self alloc] init];
@@ -119,15 +117,18 @@ static NSString *LOCAL_DIR = @"versions";
 
 - (NSDictionary *)getValueFromUserDefaultsForKey:(NSString*)key {
 
-  NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
+  NSUserDefaults *ud = [[NSUserDefaults alloc] initWithSuiteName:RNVUserDefaultsSuiteName];
+  NSDictionary *defaults = [ud objectForKey:RNVUpdaterData];
   return [defaults objectForKey:key];
 }
 
 - (void)setUserDefaultsValueForKey:(NSString*)key value:(NSString *)value {
 
-  NSMutableDictionary *defaults = [[NSUserDefaults standardUserDefaults] objectForKey:kUpdaterData];
+  NSUserDefaults *ud = [[NSUserDefaults alloc] initWithSuiteName:RNVUserDefaultsSuiteName];
+  NSDictionary *defaults = [ud objectForKey:RNVUpdaterData];
+    
   [[defaults objectForKey:key] setObject:value forKey:key];
-  [[NSUserDefaults standardUserDefaults] setObject:defaults forKey:kUpdaterData];
+  [ud setObject:defaults forKey:RNVUpdaterData];
 }
 
 @end

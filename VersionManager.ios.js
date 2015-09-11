@@ -72,7 +72,7 @@ var Versions = React.createClass({
             console.log("Already on the latest version!");
           } else {
             console.log("New version detected: "+latestVersion);
-            this.setState({modalVisible: true, version: latestVersion});
+            this.setState({modalVisible: true, version: latestVersion, releaseNotes: latestVersionData.release_notes});
             this.showAlert();
           }
         })
@@ -104,9 +104,10 @@ var Versions = React.createClass({
   },
 
   showAlert() {
+
     return AlertIOS.alert(
-        'Update available',
-        'Version '+this.state.version,
+        `New version available: ${this.state.version}`,
+        this.state.release_notes || "This version has no release notes.",
         [
           {text: 'Update', onPress: () => this.updateToVersion(this.state.version)},
           {text: 'Cancel', onPress: () => this.closeModal()},

@@ -38,12 +38,20 @@ static NSString *LOCAL_DIR = @"versions";
   NSString *versionPath = [NSString stringWithFormat:LATEST_VERSION, self.appId, self.apiId, self.apiSecret, self.binaryVersion];
 
   [self downloadURLContents:versionPath Completion:^(NSError *err, NSData *data) {
-    NSError *error;
-    NSDictionary *version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 
-    if ([version objectForKey:@"errors"] != nil) {
-      error = [NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil];
+    NSError *error;
+    NSDictionary *version = nil;
+
+    if (data == nil) {
+      error = [NSError errorWithDomain:@"UpdateDownloader" code:1009 userInfo:nil];
+    } else {
+      version = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+
+      if ([version objectForKey:@"errors"] != nil) {
+        error = [NSError errorWithDomain:@"UpdateDownloader" code:1000 userInfo:nil];
+      }
     }
+
     completion(error, version);
   }];
 }
@@ -126,7 +134,7 @@ static NSString *LOCAL_DIR = @"versions";
 
   NSUserDefaults *ud = [[NSUserDefaults alloc] initWithSuiteName:RNVUserDefaultsSuiteName];
   NSDictionary *defaults = [ud objectForKey:RNVUpdaterData];
-    
+
   [[defaults objectForKey:key] setObject:value forKey:key];
   [ud setObject:defaults forKey:RNVUpdaterData];
 }
